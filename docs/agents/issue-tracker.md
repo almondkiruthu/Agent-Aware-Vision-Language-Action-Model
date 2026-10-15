@@ -1,5 +1,10 @@
 # Issue tracker: GitHub
 
+Migration status (2026-10-15): GitHub Issues are disabled on this fork. The
+commands below are retained workflow conventions, not confirmation of an active
+tracker. Use `docs/codebase-map.md` for the current migration scope; reconcile
+the tracker and historical issue IDs before resuming AFK issue work.
+
 Issues and specs live in GitHub Issues for
 `almondkiruthu/Agent-Aware-Vision-Language-Action-Model`.
 

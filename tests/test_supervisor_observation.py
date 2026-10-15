@@ -9,7 +9,7 @@ import numpy as np
 from episode_harness import (EpisodeConfig, ObservationPacket, RobotStateCapture,
                              frame_references_for_observation, run_episode,
                              supervisor_observation)
-from libero_adapter import LiberoEnvironmentAdapter
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
 from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 

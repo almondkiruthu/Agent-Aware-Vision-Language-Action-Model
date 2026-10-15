@@ -112,7 +112,8 @@ counts match simulator steps (30, 1200, 1200). Fresh environment and run records
 are in `robotwin/evidence/fresh-run/`; earlier evidence is preserved separately.
 Colab confirmed all notebook changes saved after an output-save conflict was
 reviewed and resolved. The new runtime is connected and ready for more episodes
-at handoff; the original runtime was deleted.
+at the fresh-run handoff; the original runtime was deleted. The user subsequently
+confirmed releasing the new runtime before starting codebase cleanup.
 
 ### Setup stages
 
@@ -174,9 +175,11 @@ The notebook downloads the complete checkpoint directly into the Colab runtime.
 The client reports roughly 6% success over 50 episodes; that claim has not been
 reproduced here. The full Slack transcript and its credentials are not included.
 
-No legacy code has been removed. First establish the RoboTwin baseline, then
-review the reusable trace, supervision, memory, and evaluation interfaces against
-this client's 14-dimensional joint-target/action-chunk contract. Review the team's
+The previous simulator implementation is isolated under `legacy/libero/`, with
+its tests and historical documentation preserved. Review the reusable trace,
+supervision, memory, and evaluation interfaces against
+this client's 14-dimensional joint-target/action-chunk contract. See
+`docs/codebase-map.md` for the cleanup and remaining integration work. Review the team's
 existing RoboTwin work before implementing a second version of it.
 
 Do not run the old AFK issue queue against this new scope. Forking Git history

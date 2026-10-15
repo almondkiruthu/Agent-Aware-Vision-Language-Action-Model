@@ -21,7 +21,7 @@ episode reset can verify application and readback in the simulator.
 The corresponding episode command, **only after the live-run gates are met**, is:
 
 ```bash
-python run_smolvla_episode.py --suite libero_10 --task-id 0 \
+python -m legacy.libero.run_smolvla_episode --suite libero_10 --task-id 0 \
   --initial-state-id 0 --seed 0 --device cuda \
   --output-dir outputs/task0_state0_attempt1
 ```

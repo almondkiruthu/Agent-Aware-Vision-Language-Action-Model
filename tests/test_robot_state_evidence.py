@@ -7,7 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from episode_harness import EpisodeConfig, run_episode, supervisor_observation
-from libero_adapter import LiberoEnvironmentAdapter
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
 from recorded_replay import TraceRecorder, load_recorded_replay
 from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from robot_state_evidence import (LIBERO_STATE_SPECS, StateSpec,

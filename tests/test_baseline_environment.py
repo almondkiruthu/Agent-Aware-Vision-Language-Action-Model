@@ -9,8 +9,8 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from baseline_environment import capture_environment
-from run_smolvla_episode import main
+from legacy.libero.baseline_environment import capture_environment
+from legacy.libero.run_smolvla_episode import main
 
 
 class BaselineEnvironmentTests(unittest.TestCase):
@@ -30,12 +30,12 @@ class BaselineEnvironmentTests(unittest.TestCase):
                                  current_device=lambda: 1,
                                  get_device_name=lambda index: 'fixture GPU'))
         patches = [
-            patch('baseline_environment.metadata.distributions', return_value=[
+            patch('legacy.libero.baseline_environment.metadata.distributions', return_value=[
                 SimpleNamespace(metadata={'Name': 'torch', 'Home-page': 'secret'},
                                 version='9.0-fixture'),
                 SimpleNamespace(metadata={'Name': 'lerobot'}, version='0.4.3')]),
-            patch('baseline_environment.metadata.version', return_value='0.4.3'),
-            patch('baseline_environment.metadata.distribution', return_value=self.controller),
+            patch('legacy.libero.baseline_environment.metadata.version', return_value='0.4.3'),
+            patch('legacy.libero.baseline_environment.metadata.distribution', return_value=self.controller),
             patch.dict('sys.modules', {'torch': self.torch}),
             patch.dict('os.environ', {'MUJOCO_GL': 'osmesa', 'HF_TOKEN': 'secret-token'}),
         ]
@@ -62,7 +62,7 @@ class BaselineEnvironmentTests(unittest.TestCase):
         self.assertEqual(capture_environment(self.path, 'cpu')['device']['resolved'], 'cpu')
 
     def test_unsupported_version_retains_actionable_failure_before_torch(self):
-        with patch('baseline_environment.metadata.version', return_value='0.5.0'):
+        with patch('legacy.libero.baseline_environment.metadata.version', return_value='0.5.0'):
             with self.assertRaisesRegex(RuntimeError, 'lerobot==0.4.3'):
                 capture_environment(self.path, 'cuda')
         record = json.loads(self.path.read_text())
@@ -77,13 +77,13 @@ class BaselineEnvironmentTests(unittest.TestCase):
         self.assertEqual(json.loads(self.path.read_text())['controller']['status'], 'unavailable')
 
     def test_missing_lerobot_has_install_guidance(self):
-        with patch('baseline_environment.metadata.version', side_effect=PackageNotFoundError):
+        with patch('legacy.libero.baseline_environment.metadata.version', side_effect=PackageNotFoundError):
             with self.assertRaisesRegex(RuntimeError, 'lerobot==0.4.3'):
                 capture_environment(self.path, 'cpu')
         self.assertIn('install', json.loads(self.path.read_text())['preflight']['diagnostic'])
 
     def test_unexpected_failure_does_not_export_exception_secrets(self):
-        with patch('baseline_environment.metadata.distribution',
+        with patch('legacy.libero.baseline_environment.metadata.distribution',
                    side_effect=OSError('private/path/secret-token')):
             with self.assertRaises(OSError):
                 capture_environment(self.path, 'cpu')
@@ -109,8 +109,8 @@ class BaselineEnvironmentTests(unittest.TestCase):
     def test_runner_persists_failure_before_policy_or_simulator_import(self):
         output = self.root / 'run'
         with patch('sys.argv', ['runner', '--output-dir', str(output)]), \
-                patch('baseline_environment.metadata.version', return_value='unsupported'), \
-                patch('run_smolvla_episode.resolve_policy_assets') as assets:
+                patch('legacy.libero.baseline_environment.metadata.version', return_value='unsupported'), \
+                patch('legacy.libero.run_smolvla_episode.resolve_policy_assets') as assets:
             with self.assertRaisesRegex(RuntimeError, 'lerobot==0.4.3'):
                 main()
         assets.assert_not_called()

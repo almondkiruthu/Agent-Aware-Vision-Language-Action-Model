@@ -5,7 +5,7 @@ from dataclasses import asdict
 
 from episode_harness import EpisodeConfig, run_episode
 from replay_adapters import ReplayRecorder, successful_replay
-from run_smolvla_episode import evidence_json
+from legacy.libero.run_smolvla_episode import evidence_json
 
 
 class EpisodeInterruptionTests(unittest.TestCase):

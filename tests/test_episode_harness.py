@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from time import monotonic
 
 from episode_harness import EpisodeConfig, ObservationPacket, StepResult, run_episode
-from run_smolvla_episode import parse_args
+from legacy.libero.run_smolvla_episode import parse_args
 
 
 class ReplayPolicy:

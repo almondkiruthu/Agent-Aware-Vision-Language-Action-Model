@@ -14,7 +14,7 @@ Checkpoint: https://huggingface.co/HuggingFaceVLA/smolvla_libero
 This script is a custom adaptation, not an official LeRobot example.
 
 Example:
-  python run_smolvla_episode.py --suite libero_10 --task-id 0 --seed 0
+  python -m legacy.libero.run_smolvla_episode --suite libero_10 --task-id 0 --seed 0
 Video FPS changes playback only, not simulation control frequency.
 """
 from __future__ import annotations
@@ -27,18 +27,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from time import monotonic
 
-from baseline_environment import capture_environment
+from legacy.libero.baseline_environment import capture_environment
 from attempt_identity import AttemptIdentityRecorder, reserve_attempt
 from camera_evidence import CameraEvidenceRecorder
 from artifact_finalization import ArtifactResources
 from artifact_bundle import seal_artifact_bundle
-from libero_adapter import LiberoEnvironmentAdapter, read_action_horizon, read_native_capabilities
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter, read_action_horizon, read_native_capabilities
 from action_capabilities import libero_native_capabilities
-from libero_initial_state import select_initial_state
+from legacy.libero.libero_initial_state import select_initial_state
 from episode_harness import EpisodeConfig, exception_stop_reason, run_episode
 from recorded_replay import TraceRecorder
 from policy_adapter import ResetOnResumePolicyAdapter
-from pinned_policy import POLICY_REPOSITORY, POLICY_REVISION, resolve_policy_assets
+from legacy.libero.pinned_policy import POLICY_REPOSITORY, POLICY_REVISION, resolve_policy_assets
 
 
 def evidence_json(value):

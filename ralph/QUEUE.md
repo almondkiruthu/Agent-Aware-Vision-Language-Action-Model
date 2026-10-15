@@ -1,5 +1,9 @@
 # Simulation supervisor queue
 
+> Historical LIBERO planning and allowance record. These issue IDs and model
+> assumptions have not been reconciled with the RoboTwin migration or the new
+> fork. This file does not authorize a new AFK run or live supervisor spending.
+
 `queues/simulation-supervisor.json` contains the 50 dependency-ordered issues.
 It is planning context only; `afk.sh` selects work through its prompt and counts completed issues.
 

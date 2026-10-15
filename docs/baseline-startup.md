@@ -57,9 +57,9 @@ from lerobot.envs.libero import create_libero_envs
 from lerobot.envs.utils import add_envs_task, preprocess_observation
 from lerobot.utils.random_utils import set_seed
 
-from baseline_environment import capture_environment
-from libero_initial_state import select_initial_state
-from pinned_policy import POLICY_REPOSITORY, POLICY_REVISION
+from legacy.libero.baseline_environment import capture_environment
+from legacy.libero.libero_initial_state import select_initial_state
+from legacy.libero.pinned_policy import POLICY_REPOSITORY, POLICY_REVISION
 
 with TemporaryDirectory() as directory:
     runtime = capture_environment(Path(directory) / 'environment.json', 'cpu')
@@ -83,7 +83,7 @@ The matching **episode invocation**, after its resource and data-use gates are
 established, is:
 
 ```bash
-python run_smolvla_episode.py --suite libero_10 --task-id 0 \
+python -m legacy.libero.run_smolvla_episode --suite libero_10 --task-id 0 \
   --initial-state-id 0 --seed 0 --device cuda
 ```
 

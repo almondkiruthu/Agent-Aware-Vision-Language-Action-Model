@@ -137,7 +137,7 @@ class LiberoEnvironmentAdapter:
         if self.initial_state is None:
             observation, _ = self.environment.reset(seed=[seed])
         else:
-            from libero_initial_state import reset_selected_state
+            from legacy.libero.libero_initial_state import reset_selected_state
             observation, _ = reset_selected_state(
                 self.environment, seed, self.initial_state, self.initial_state_evidence)
         packet = self._packet(observation)

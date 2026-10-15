@@ -1,0 +1,2 @@
+# Offline behavioral tests only; live RoboTwin environments have separate files.
+numpy==2.4.4

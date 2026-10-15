@@ -5,9 +5,9 @@ import unittest
 from dataclasses import asdict
 
 from episode_harness import EpisodeConfig, ObservationRejected, run_episode
-from libero_adapter import LiberoEnvironmentAdapter
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
 from replay_adapters import ReplayRecorder, successful_replay
-from run_smolvla_episode import evidence_json
+from legacy.libero.run_smolvla_episode import evidence_json
 
 
 class QueuedPolicy:

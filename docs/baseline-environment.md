@@ -4,7 +4,7 @@ Every baseline invocation creates `environment.json` in its new output directory
 before importing the simulator or resolving model assets. Use the existing runner:
 
 ```bash
-python run_smolvla_episode.py --device cuda --output-dir outputs/baseline-new
+python -m legacy.libero.run_smolvla_episode --device cuda --output-dir outputs/baseline-new
 ```
 
 The manifest contains inspected Python version/implementation, OS, every installed

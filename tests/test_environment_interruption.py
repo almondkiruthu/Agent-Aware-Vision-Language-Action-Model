@@ -11,7 +11,7 @@ from baseline_fallback import BaselineFallback
 from environment_interruption import InterruptionContract
 from episode_harness import ActionResolution, EpisodeConfig, run_episode
 from fallback_fixtures import MeasuredReplayEnvironment
-from libero_adapter import LiberoEnvironmentAdapter
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
 from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
 from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from test_baseline_fallback import abstain
