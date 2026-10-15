@@ -67,6 +67,55 @@ same rendering limitation again.
 
 ## Files and next run
 
+### From scratch in Colab
+
+Use **File > Upload notebook** to open `robotwin/RoboTwin_Colab.ipynb`.
+Choose **Runtime > Change runtime type > L4 GPU**, enable **High RAM**, save,
+and click **Connect**. Wait until the RAM/Disk indicators appear before uploading.
+In the Files sidebar, click **Upload to session storage** and select
+`robotwin/robotwin-colab-input.zip`. Do not unzip it on your laptop or mount Drive.
+
+Run the first code cell with its play button. It should print
+`/content/robotwin-agent`. Then run each code cell from top to bottom, waiting
+for it to finish before starting the next. Stop at an error. The numbered
+sections check graphics, install CUDA tools, install two Python environments,
+build the simulator dependencies, download assets/model, run episodes, and
+download results. The image-display cell should show a rendered test scene.
+The short episode checks the pipeline; the following cell runs two full attempts.
+
+On the same connected runtime, rerun only the episode cells and final export
+cell for more attempts. After a deleted or replaced runtime, repeat every stage.
+Before using **Disconnect and delete runtime**, download the final results ZIP
+and check that it exists locally. The notebook remains in Drive; installed
+software, model weights, assets, and unexported results in session storage do not.
+
+The original diagnostic runtime was disconnected and deleted on 2026-10-15,
+after its results were saved locally. The clean walkthrough notebook is at
+https://colab.research.google.com/drive/1JlAq3w1FiZF76cJ3ALomC9okrkd0UtUQ
+and is separate from the earlier diagnostic execution record.
+
+**Fresh-start verification passed:** all nine code cells of the clean notebook
+ran unchanged on a newly allocated L4 runtime. This included the full setup,
+30-step smoke run, two 1,200-step attempts, video display, and evidence download.
+The new full attempts also reported 0/2 task successes. These are repeat runs of
+seeds 0 and 1, not additional unique evaluation seeds.
+
+| Fresh run | Steps | Video |
+| --- | --- | --- |
+| `20261015T152540Z` | 30 | `robotwin/outputs/20261015T152540Z/episode_0.mp4` |
+| `20261015T152742Z` | 1200 | `robotwin/outputs/20261015T152742Z/episode_0.mp4` |
+| `20261015T153234Z` | 1200 | `robotwin/outputs/20261015T153234Z/episode_1.mp4` |
+
+The download `C:\Users\almon\Downloads\robotwin-results (1).zip` is 4,240,759
+bytes. ZIP integrity and every video SHA256 were verified locally, and frame
+counts match simulator steps (30, 1200, 1200). Fresh environment and run records
+are in `robotwin/evidence/fresh-run/`; earlier evidence is preserved separately.
+Colab confirmed all notebook changes saved after an output-save conflict was
+reviewed and resolved. The new runtime is connected and ready for more episodes
+at handoff; the original runtime was deleted.
+
+### Setup stages
+
 1. Open `robotwin/RoboTwin_Colab.ipynb` in Colab and select a GPU runtime.
 2. Upload `robotwin/robotwin-colab-input.zip` when its first cell requests it.
 3. Run the host preflight. Stop if it does not find NVIDIA Vulkan.
@@ -79,7 +128,8 @@ same rendering limitation again.
 
 The notebook fails on missing prerequisites instead of silently substituting a
 software renderer or treating CUDA availability as proof of rendering support.
-It may require runtime-specific toolchain work; it is not certified turnkey.
+The clean notebook passed end to end on the L4 runtime described above. Other
+runtime images or future dependency changes may require setup adjustments.
 
 For a compatible Linux host, run these from `robotwin/` in order:
 
