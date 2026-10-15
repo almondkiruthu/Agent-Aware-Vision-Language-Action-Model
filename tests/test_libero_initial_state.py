@@ -8,11 +8,11 @@ import unittest
 
 import numpy as np
 
-from episode_harness import EpisodeConfig, run_episode
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
 from legacy.libero.libero_initial_state import select_initial_state, state_digest
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayRecorder
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayRecorder
 from legacy.libero.run_smolvla_episode import parse_args
 
 

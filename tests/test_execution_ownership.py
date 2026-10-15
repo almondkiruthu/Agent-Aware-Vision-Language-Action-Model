@@ -3,8 +3,8 @@
 from threading import Event, Thread
 import unittest
 
-from episode_harness import ExecutionBusy, run_episode
-from replay_adapters import successful_replay
+from agent_vla.runtime.harness import ExecutionBusy, run_episode
+from agent_vla.evidence.adapters import successful_replay
 
 
 class ExecutionOwnershipTests(unittest.TestCase):

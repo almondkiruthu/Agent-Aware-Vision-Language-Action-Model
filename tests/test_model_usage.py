@@ -6,12 +6,12 @@ from threading import Event
 import unittest
 from unittest.mock import patch
 
-from episode_harness import EpisodeConfig, run_episode
-from model_usage import ModelCallJournal, ModelReply
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.runtime.model_usage import ModelCallJournal, ModelReply
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings
 from test_supervisor_vlm import PNG, pass_message, proposal, raw
 
 
@@ -20,7 +20,7 @@ class ModelUsageTests(unittest.TestCase):
         with TemporaryDirectory() as temporary:
             path = Path(temporary) / 'calls.jsonl'
             journal = ModelCallJournal(path)
-            with patch('model_usage.monotonic', side_effect=[10., 12., 20., 23., 30., 34.]):
+            with patch('agent_vla.runtime.model_usage.monotonic', side_effect=[10., 12., 20., 23., 30., 34.]):
                 value = journal.call(proposal(), 'fixture-provider', 'frozen-model',
                     lambda: ModelReply('response', {'input_tokens': 7, 'output_tokens': 2},
                                        .25, 'USD'))

@@ -8,13 +8,17 @@ import unittest
 
 import numpy as np
 
-from action_capabilities import (ActionCapabilities, ActionComponent,
-                                 libero_native_capabilities, validate_action_pair)
-from episode_harness import EpisodeConfig, run_episode
+from agent_vla.interventions.action_capabilities import (
+    ActionCapabilities,
+    ActionComponent,
+    libero_native_capabilities,
+    validate_action_pair,
+)
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from legacy.libero.libero_adapter import read_native_capabilities
-from policy_adapter import ResetOnResumePolicyAdapter
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.policy_adapter import ResetOnResumePolicyAdapter
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 def two_arm():

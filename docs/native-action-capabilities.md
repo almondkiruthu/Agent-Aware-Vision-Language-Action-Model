@@ -1,7 +1,7 @@
 # Native action capabilities
 
 Adapters expose `action_capabilities: ActionCapabilities` from
-`action_capabilities.py`. A policy declares its required native interface after
+`src/agent_vla/interventions/action_capabilities.py`. A policy declares its required native interface after
 preprocessing/postprocessing; the environment declares what it accepts.
 `run_episode` validates the pair before reset, recording or inference.
 

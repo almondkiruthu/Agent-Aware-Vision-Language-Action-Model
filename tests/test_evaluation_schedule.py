@@ -4,13 +4,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import EpisodeConfig, run_episode
-from evaluation_protocol import EvaluationProtocol, ProtocolError
-from evaluation_resume import run_evaluation_schedule
-from evaluation_schedule import (audit_evaluation_schedule,
-                                 build_evaluation_schedule)
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from recorded_replay import TraceRecorder
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evaluation.protocol import EvaluationProtocol, ProtocolError
+from agent_vla.evaluation.resume import run_evaluation_schedule
+from agent_vla.evaluation.schedule import audit_evaluation_schedule, build_evaluation_schedule
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.evidence.replay import TraceRecorder
 from tests.test_evaluation_protocol import declaration, member
 
 

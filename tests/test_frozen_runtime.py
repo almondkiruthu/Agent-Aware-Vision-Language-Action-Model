@@ -8,12 +8,17 @@ from threading import Event
 from time import monotonic
 import unittest
 
-from episode_harness import EpisodeConfig, SupervisorPass, SupervisorResponseError, run_episode
-from frozen_runtime import FrozenRuntimeContract, FrozenContractViolation
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_response import SupervisorResponseDecoder
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings
+from agent_vla.runtime.harness import (
+    EpisodeConfig,
+    SupervisorPass,
+    SupervisorResponseError,
+    run_episode,
+)
+from agent_vla.runtime.frozen_runtime import FrozenRuntimeContract, FrozenContractViolation
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.response import SupervisorResponseDecoder
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings
 from test_supervisor_vlm import PNG, pass_message, proposal, raw
 
 

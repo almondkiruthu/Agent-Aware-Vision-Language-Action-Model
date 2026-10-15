@@ -7,13 +7,13 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from episode_harness import EpisodeConfig, SupervisorResponseError, run_episode
-from observation_window import ObservationWindowBuilder
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider
-from supervisor_response import SupervisorResponseDecoder
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorResponseError, run_episode
+from agent_vla.observations.window import ObservationWindowBuilder
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider
+from agent_vla.supervision.response import SupervisorResponseDecoder
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings
 from test_supervisor_vlm import PNG, message, proposal, raw
 
 FIXTURES = json.loads((Path(__file__).parent / 'fixtures/temporal_diagnoses.json').read_text())

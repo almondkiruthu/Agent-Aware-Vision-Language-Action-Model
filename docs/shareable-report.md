@@ -4,7 +4,7 @@ The local timeline embeds raw observation and evaluator payloads. To prepare a
 separate report for sharing, use a verified final baseline bundle:
 
 ```powershell
-python shareable_report.py outputs/my-attempt outputs/shareable-attempt
+python -m agent_vla.evidence.shareable_report outputs/my-attempt outputs/shareable-attempt
 ```
 
 This writes `report.html` and `export.json` to a new directory. By default it
@@ -18,7 +18,7 @@ select exact inventoried files. Every file defaults to private; including it
 requires both selection and an explicit private permission:
 
 ```powershell
-python shareable_report.py outputs/my-attempt outputs/permitted-example --select episode.mp4 --permit-private episode.mp4
+python -m agent_vla.evidence.shareable_report outputs/my-attempt outputs/permitted-example --select episode.mp4 --permit-private episode.mp4
 ```
 
 An optional `--classifications classifications.json` accepts a JSON object

@@ -6,9 +6,10 @@ import json
 from pathlib import Path
 import unittest
 
-from episode_harness import ActionProposal, ObservationPacket
-from recovery_registry import RecoveryRegistry, RecoveryTool
-from supervisor_recovery import RecoveryParameter
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import ActionProposal
+from agent_vla.interventions.recovery_registry import RecoveryRegistry, RecoveryTool
+from agent_vla.supervision.recovery import RecoveryParameter
 
 
 def fixture_tool():

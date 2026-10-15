@@ -5,13 +5,13 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import EpisodeConfig, SupervisorResponseError, run_episode
-from observation_window import ObservationWindowBuilder, WindowSettings
-from recorded_replay import TraceRecorder
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
-from supervisor_response import SupervisorResponseDecoder
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorResponseError, run_episode
+from agent_vla.observations.window import ObservationWindowBuilder, WindowSettings
+from agent_vla.evidence.replay import TraceRecorder
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.supervision.response import SupervisorResponseDecoder
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings
 from test_supervisor_vlm import PNG, message, proposal, raw
 
 

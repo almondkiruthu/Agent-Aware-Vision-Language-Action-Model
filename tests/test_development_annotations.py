@@ -8,8 +8,11 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from development_annotations import (
-    AnnotationError, annotation_template, load_annotation, save_annotation,
+from agent_vla.memory.development_annotations import (
+    AnnotationError,
+    annotation_template,
+    load_annotation,
+    save_annotation,
     validate_annotation,
 )
 
@@ -66,7 +69,7 @@ class DevelopmentAnnotationTests(unittest.TestCase):
     def test_template_cli_and_validation_cli(self):
         with TemporaryDirectory() as directory:
             path = Path(directory) / 'draft.json'
-            command = [sys.executable, 'development_annotations.py']
+            command = [sys.executable, '-m', 'agent_vla.memory.development_annotations']
             subprocess.run(command + ['template', str(TRACE), str(path), '--reviewer',
                                       'fixture author', '--provenance', 'synthetic'],
                            check=True, capture_output=True)

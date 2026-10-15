@@ -5,8 +5,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionResolution
-from single_action_adjustment import SingleActionAdjustment
+from agent_vla.runtime.harness import ActionResolution
+from agent_vla.interventions.single_action_adjustment import SingleActionAdjustment
 from test_recovery_eligibility import fresh_proposal, request_for, scene_for
 import test_intervention_limits as fixtures
 import test_single_action_adjustment as adjustments

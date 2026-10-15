@@ -3,9 +3,9 @@
 import unittest
 from dataclasses import asdict
 
-from episode_harness import EpisodeConfig, run_episode
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from legacy.libero.libero_adapter import read_action_horizon
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 class ConfiguredEnvironment:

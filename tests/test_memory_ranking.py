@@ -4,8 +4,8 @@ from dataclasses import asdict
 from itertools import permutations
 import unittest
 
-from intervention_memory import InterventionMemory
-from recorded_replay import TraceError
+from agent_vla.memory.intervention_memory import InterventionMemory
+from agent_vla.evidence.replay import TraceError
 import test_memory_compatibility as fixtures
 
 

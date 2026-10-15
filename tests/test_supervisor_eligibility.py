@@ -6,14 +6,24 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from baseline_fallback import BaselineFallback
+from agent_vla.runtime.baseline_fallback import BaselineFallback
 
-from episode_harness import (ActionProposal, EpisodeConfig, ObservationPacket,
-                             RobotStateCapture, SupervisorAbstention, SupervisorPass,
-                             ViewCapture, frame_references_for_observation, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_eligibility import ObservationEligibleSupervisor
+from agent_vla.observations.contracts import (
+    ObservationPacket,
+    RobotStateCapture,
+    ViewCapture,
+    frame_references_for_observation,
+)
+from agent_vla.runtime.harness import (
+    ActionProposal,
+    EpisodeConfig,
+    SupervisorAbstention,
+    SupervisorPass,
+    run_episode,
+)
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.eligibility import ObservationEligibleSupervisor
 
 
 WALL = datetime(2026, 1, 1, tzinfo=timezone.utc)

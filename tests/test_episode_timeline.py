@@ -8,10 +8,10 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionResolution, run_episode
-from episode_timeline import render_episode_timeline
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import successful_replay
+from agent_vla.runtime.harness import ActionResolution, run_episode
+from agent_vla.evidence.timeline import render_episode_timeline
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import successful_replay
 
 
 FIXTURE = Path(__file__).parent / 'fixtures' / 'recorded_episode'
@@ -104,7 +104,7 @@ class EpisodeTimelineTests(unittest.TestCase):
     def test_cli_writes_standalone_report_and_preserves_existing_output(self):
         with TemporaryDirectory() as directory:
             path = Path(directory) / 'timeline.html'
-            command = [sys.executable, str(FIXTURE.parents[2] / 'episode_timeline.py'),
+            command = [sys.executable, '-m', 'agent_vla.evidence.timeline',
                        str(FIXTURE), str(path)]
             subprocess.run(command, check=True, capture_output=True, text=True)
             report = path.read_bytes()

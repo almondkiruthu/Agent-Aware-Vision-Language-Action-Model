@@ -12,7 +12,7 @@ A/B/C effort. Record the pilot's artifact identities and measurement method
 alongside the planner output. Do not feed held-out outcomes into planning.
 
 ```python
-from evaluation_allocation import plan_trial_allocation
+from agent_vla.evaluation.allocation import plan_trial_allocation
 
 plan = plan_trial_allocation(
     development_pilot, max_states_per_task=100,
@@ -66,7 +66,7 @@ catalog and digest must still be verified against the installed simulator when
 selecting each actual state.
 
 ```python
-from evaluation_protocol import EvaluationProtocol
+from agent_vla.evaluation.protocol import EvaluationProtocol
 
 protocol = EvaluationProtocol.freeze(
     'evidence/protocol.json', conditions=conditions, splits=splits, seeds=seeds,
@@ -108,7 +108,7 @@ caps. The caller must authenticate the resolution and approval records and
 verify that observed state identities came from the installed dataset.
 
 ```python
-from evaluation_preflight import preflight_evaluation_campaign, start_evaluation_campaign
+from agent_vla.evaluation.preflight import preflight_evaluation_campaign, start_evaluation_campaign
 
 report = preflight_evaluation_campaign(
     protocol, rows, resolved_conditions=resolved_conditions,
@@ -147,7 +147,7 @@ condition's position within a task and across the full schedule to a
 difference of at most one when pair counts are not divisible by three.
 
 ```python
-from evaluation_schedule import build_evaluation_schedule, audit_evaluation_schedule
+from agent_vla.evaluation.schedule import build_evaluation_schedule, audit_evaluation_schedule
 
 rows = build_evaluation_schedule(protocol)
 report = audit_evaluation_schedule(protocol, rows)
@@ -176,7 +176,7 @@ returned outcome list follows schedule order; `max_new` can stop after a
 declared number of newly completed rows and resume later.
 
 ```python
-from evaluation_resume import run_evaluation_schedule
+from agent_vla.evaluation.resume import run_evaluation_schedule
 
 outcomes = run_evaluation_schedule(protocol, rows, 'evidence/attempts', run_one)
 ```
@@ -271,7 +271,7 @@ resample count, protocol ID, observed equal-task differences, endpoints,
 `status`, and specific `limitations`.
 
 ```python
-from evaluation_clusters import report_paired_cluster_intervals
+from agent_vla.evaluation.clusters import report_paired_cluster_intervals
 
 intervals = report_paired_cluster_intervals(protocol, rows, verified_attempts)
 print(intervals['intervals_pp']['fixed_memory_minus_baseline'])
@@ -303,7 +303,7 @@ reach 10 points. A relative 10% increase in success rate does not meet the
 observed-gain rule unless it also equals at least 10 percentage points.
 
 ```python
-from evaluation_acceptance import report_simulation_acceptance
+from agent_vla.evaluation.acceptance import report_simulation_acceptance
 
 decision = report_simulation_acceptance(protocol, rows, verified_attempts)
 print(decision['decision'], decision['reasons'])
@@ -331,7 +331,7 @@ required evidence is unavailable or unsupported. The report carries the
 analysis limitations through without substituting pooled trial counts.
 
 ```python
-from evaluation_acceptance import report_simulation_contributions
+from agent_vla.evaluation.acceptance import report_simulation_contributions
 
 contributions = report_simulation_contributions(protocol, rows,
                                                 verified_attempts)
@@ -362,7 +362,7 @@ post-start interruption cannot be replaced. The allowance applies to each
 original scheduled attempt, including repeated initialization failures.
 
 ```python
-from evaluation_replacement import next_pre_start_replacement
+from agent_vla.evaluation.replacement import next_pre_start_replacement
 
 plan = next_pre_start_replacement(
     protocol, rows, row, [(row['attempt_id'], original_interruption)])
@@ -402,7 +402,7 @@ assistance and intervention counts from retained attempt evidence. Missing
 records are never inferred as zero.
 
 ```python
-from evaluation_operations import report_operational_metrics
+from agent_vla.evaluation.operations import report_operational_metrics
 
 report = report_operational_metrics(protocol, rows, verified_attempts,
                                     verified_operational_by_attempt)

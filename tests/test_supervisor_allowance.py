@@ -7,11 +7,11 @@ from tempfile import TemporaryDirectory
 from threading import Event
 import unittest
 
-from episode_harness import EpisodeConfig, run_episode
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider
 from test_supervisor_provider import response
 
 

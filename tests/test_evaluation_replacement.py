@@ -5,11 +5,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import EpisodeConfig, PreStartFailure, run_episode
-from evaluation_protocol import EvaluationProtocol, ProtocolError
-from evaluation_replacement import next_pre_start_replacement
-from evaluation_schedule import build_evaluation_schedule
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import EpisodeConfig, PreStartFailure, run_episode
+from agent_vla.evaluation.protocol import EvaluationProtocol, ProtocolError
+from agent_vla.evaluation.replacement import next_pre_start_replacement
+from agent_vla.evaluation.schedule import build_evaluation_schedule
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from tests.test_evaluation_protocol import declaration
 
 

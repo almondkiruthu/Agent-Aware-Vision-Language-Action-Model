@@ -9,13 +9,18 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from episode_harness import (ActionProposal, EpisodeConfig, ObservationPacket,
-                             SupervisorResponseError, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
-from supervisor_recovery import RecoveryParameter, RecoveryRequestDecoder
-from supervisor_response import SupervisorResponseDecoder
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import (
+    ActionProposal,
+    EpisodeConfig,
+    SupervisorResponseError,
+    run_episode,
+)
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.supervision.recovery import RecoveryParameter, RecoveryRequestDecoder
+from agent_vla.supervision.response import SupervisorResponseDecoder
 
 
 class SupervisorResponseTests(unittest.TestCase):

@@ -4,9 +4,13 @@ import unittest
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 
-from episode_harness import (ObservationIngestor, ObservationPacket,
-                             ObservationRejected, run_episode)
-from replay_adapters import successful_replay
+from agent_vla.observations.contracts import (
+    ObservationIngestor,
+    ObservationPacket,
+    ObservationRejected,
+)
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.adapters import successful_replay
 
 
 CAPTURE = datetime(2026, 1, 1, tzinfo=timezone.utc)

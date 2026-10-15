@@ -28,16 +28,16 @@ from pathlib import Path
 from time import monotonic
 
 from legacy.libero.baseline_environment import capture_environment
-from attempt_identity import AttemptIdentityRecorder, reserve_attempt
-from camera_evidence import CameraEvidenceRecorder
-from artifact_finalization import ArtifactResources
-from artifact_bundle import seal_artifact_bundle
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder, reserve_attempt
+from agent_vla.observations.camera_evidence import CameraEvidenceRecorder
+from agent_vla.evidence.artifact_finalization import ArtifactResources
+from agent_vla.evidence.artifact_bundle import seal_artifact_bundle
 from legacy.libero.libero_adapter import LiberoEnvironmentAdapter, read_action_horizon, read_native_capabilities
-from action_capabilities import libero_native_capabilities
+from agent_vla.interventions.action_capabilities import libero_native_capabilities
 from legacy.libero.libero_initial_state import select_initial_state
-from episode_harness import EpisodeConfig, exception_stop_reason, run_episode
-from recorded_replay import TraceRecorder
-from policy_adapter import ResetOnResumePolicyAdapter
+from agent_vla.runtime.harness import EpisodeConfig, exception_stop_reason, run_episode
+from agent_vla.evidence.replay import TraceRecorder
+from agent_vla.runtime.policy_adapter import ResetOnResumePolicyAdapter
 from legacy.libero.pinned_policy import POLICY_REPOSITORY, POLICY_REVISION, resolve_policy_assets
 
 
@@ -159,7 +159,7 @@ def main():
                 batch = preprocess_observation(packet.observation)
                 batch = add_envs_task(env, batch)
                 if batch.get('task') != [instruction]:
-                    from frozen_runtime import FrozenContractViolation
+                    from agent_vla.runtime.frozen_runtime import FrozenContractViolation
                     raise FrozenContractViolation('VLA task instruction changed during episode')
                 batch = env_pre(batch)
                 batch = preprocessor(batch)
@@ -295,7 +295,7 @@ def main():
         episode_config = EpisodeConfig(args.seed, limit)
         adapter = LiberoEnvironmentAdapter(env, initial_state=selection,
                                           action_capabilities=native_capabilities)
-        from frozen_runtime import FrozenRuntimeContract
+        from agent_vla.runtime.frozen_runtime import FrozenRuntimeContract
         runtime_contract = FrozenRuntimeContract(
             policy=lambda: {'assets': summary['policy_assets'],
                             'backbone_revision': Path(policy.config.vlm_model_name).name,

@@ -3,9 +3,11 @@
 ### Runtime and migration
 
 Start RoboTwin work with `ROBOTWIN_SETUP.md` and `docs/codebase-map.md`.
-The previous simulator implementation is in `legacy/libero/`; shared root
-modules are not yet integrated with the RoboTwin runner. Run offline regression
-checks with `python -m unittest discover -s tests`.
+The shared package is in `src/agent_vla/`; read `docs/architecture.md` before
+changing its interfaces. Install with `python -m pip install -e ".[dev]"`, then
+run `python -m unittest discover -s tests`. Distribution checks are documented
+in `docs/research-workflow.md`. The previous simulator is in `legacy/libero/`;
+the shared package is not yet integrated with the RoboTwin runner.
 
 ### Issue tracker
 

@@ -7,10 +7,10 @@ from time import monotonic
 import json
 import unittest
 
-from episode_harness import EpisodeConfig, ExecutionBusy, run_episode
-from episode_deadline import EpisodeDeadlineExceeded
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import EpisodeConfig, ExecutionBusy, run_episode
+from agent_vla.runtime.deadline import EpisodeDeadlineExceeded
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 import test_intervention_limits as fixtures
 
 
@@ -137,7 +137,7 @@ class EpisodeDeadlineTests(unittest.TestCase):
             self.assertTrue(done.wait(1))
 
     def test_blocked_supervisor_expires_without_waiting_for_its_request_timeout(self):
-        from supervisor_provider import BoundedSupervisorProvider
+        from agent_vla.supervision.provider import BoundedSupervisorProvider
         entered, release, done = Event(), Event(), Event()
         now = [10.]
         config, policy, env = self.fixture(now)

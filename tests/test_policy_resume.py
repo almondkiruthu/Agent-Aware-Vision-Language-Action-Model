@@ -4,10 +4,10 @@ from dataclasses import replace
 from datetime import datetime, timezone
 import unittest
 
-from episode_harness import (ActionResolution, EpisodeConfig, ObservationPacket,
-                             ObservationRejected, run_episode)
-from policy_adapter import ResetOnResumePolicyAdapter
-from replay_adapters import ReplayEnvironment, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import ObservationPacket, ObservationRejected
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.runtime.policy_adapter import ResetOnResumePolicyAdapter
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayRecorder, ReplayStep
 
 
 class QueuedModel:

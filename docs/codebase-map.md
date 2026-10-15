@@ -13,7 +13,13 @@ The starter presents head, left, and right camera images, a 14-value state, and
 through. Successful installation and completed videos are verified; the shared
 supervisor implementation is not wired into this path.
 
-## Retained shared code
+## Shared package
+
+The implementation installs from `src/agent_vla/`. See the
+[architecture guide](architecture.md) for module responsibilities and the
+[migration table](import-migration.md) for exact old-to-new imports.
+The table below uses the earlier names to connect existing research concepts
+to the integration work still required.
 
 | Modules | Existing responsibility | RoboTwin integration consideration |
 | --- | --- | --- |
@@ -25,10 +31,10 @@ supervisor implementation is not wired into this path.
 | Memory modules | Outcome-linked experience, snapshots, fixed/adaptive memory | Start with task-compatible memory and explicit policy/environment identity |
 | `evaluation_*`, `detector_metrics` | Allocation, accounting, acceptance, comparison | Review LIBERO-10 task lists and assumptions before measuring RoboTwin |
 
-These remain at their existing import paths to avoid a repository-wide package
-rename while the actual integration contract is still being established. Their
-behavioral tests are retained. Passing them establishes preserved behavior,
-not applicability of every capability to RoboTwin.
+Observation filtering, freshness, and ingestion now live independently of the
+episode loop in `agent_vla.observations.contracts`. Existing behavioral tests
+are retained. Passing them establishes preserved behavior, not applicability
+of every capability to RoboTwin.
 
 ## Isolated historical implementation
 

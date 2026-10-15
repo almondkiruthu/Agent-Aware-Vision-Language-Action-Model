@@ -8,12 +8,12 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from artifact_bundle import seal_artifact_bundle, verify_artifact_bundle
-from attempt_identity import AttemptIdentityRecorder
-from camera_evidence import CameraEvidenceRecorder
-from episode_harness import EpisodeConfig, run_episode
-from recorded_replay import TraceError, TraceRecorder
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.evidence.artifact_bundle import seal_artifact_bundle, verify_artifact_bundle
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder
+from agent_vla.observations.camera_evidence import CameraEvidenceRecorder
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 class ArtifactBundleTests(unittest.TestCase):
@@ -73,7 +73,7 @@ class ArtifactBundleTests(unittest.TestCase):
         shutil.move(self.root, moved)
         outcome = verify_artifact_bundle(moved).run()
         self.assertEqual((outcome.success, outcome.steps), (True, 1))
-        result = subprocess.run([sys.executable, 'artifact_bundle.py', str(moved), '--replay'],
+        result = subprocess.run([sys.executable, '-m', 'agent_vla', 'verify-bundle', str(moved), '--replay'],
                                 capture_output=True, text=True, check=True)
         self.assertTrue(json.loads(result.stdout)['verified'])
 

@@ -6,9 +6,9 @@ import subprocess
 import sys
 import unittest
 
-from artifact_bundle import seal_artifact_bundle, verify_artifact_bundle
-from recorded_replay import TraceError
-from shareable_report import export_shareable_report
+from agent_vla.evidence.artifact_bundle import seal_artifact_bundle, verify_artifact_bundle
+from agent_vla.evidence.replay import TraceError
+from agent_vla.evidence.shareable_report import export_shareable_report
 import test_artifact_bundle
 
 
@@ -29,7 +29,7 @@ class ShareableReportTests(unittest.TestCase):
         return json.loads((self.destination / 'export.json').read_text())
 
     def test_default_cli_excludes_raw_data_and_preserves_omission_provenance(self):
-        subprocess.run([sys.executable, 'shareable_report.py', str(self.root),
+        subprocess.run([sys.executable, '-m', 'agent_vla.evidence.shareable_report', str(self.root),
                         str(self.destination)], check=True, capture_output=True)
         self.assertEqual({p.name for p in self.destination.iterdir()}, {'report.html', 'export.json'})
         output = ''.join(p.read_text() for p in self.destination.iterdir())

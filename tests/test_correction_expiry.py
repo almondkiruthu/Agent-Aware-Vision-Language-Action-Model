@@ -6,9 +6,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import EpisodeConfig, run_episode
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayRecorder
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayRecorder
 import test_intervention_limits as fixtures
 
 

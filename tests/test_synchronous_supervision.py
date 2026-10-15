@@ -6,10 +6,10 @@ from tempfile import TemporaryDirectory
 from threading import Event, Thread
 import unittest
 
-from episode_harness import run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import successful_replay
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import successful_replay
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
 
 
 class DelayedResponses:

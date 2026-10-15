@@ -11,13 +11,18 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
-from episode_harness import EpisodeConfig, SupervisorPass, run_episode
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorPass, run_episode
 from legacy.libero.pinned_policy import (ASSET_LOCK, BACKBONE_REPOSITORY, POLICY_REPOSITORY,
                            POLICY_REVISION, resolve_policy_assets)
-from policy_adapter import ResetOnResumePolicyAdapter
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import (ReplayEnvironment, ReplayPolicy, ReplayRecorder,
-                             ReplayStep, successful_replay)
+from agent_vla.runtime.policy_adapter import ResetOnResumePolicyAdapter
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import (
+    ReplayEnvironment,
+    ReplayPolicy,
+    ReplayRecorder,
+    ReplayStep,
+    successful_replay,
+)
 from legacy.libero.run_smolvla_episode import parse_args
 
 

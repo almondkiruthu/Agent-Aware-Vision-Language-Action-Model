@@ -7,9 +7,9 @@ import json
 import shutil
 import unittest
 
-from intervention_memory import InterventionMemory
-from memory_snapshot import MemorySnapshot
-from recorded_replay import TraceError, load_recorded_replay
+from agent_vla.memory.intervention_memory import InterventionMemory
+from agent_vla.memory.memory_snapshot import MemorySnapshot
+from agent_vla.evidence.replay import TraceError, load_recorded_replay
 import test_memory_compatibility as fixtures
 
 

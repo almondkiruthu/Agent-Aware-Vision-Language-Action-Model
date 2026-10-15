@@ -4,9 +4,10 @@ import json
 import unittest
 from dataclasses import asdict
 
-from episode_harness import EpisodeConfig, ObservationRejected, run_episode
+from agent_vla.observations.contracts import ObservationRejected
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
-from replay_adapters import ReplayRecorder, successful_replay
+from agent_vla.evidence.adapters import ReplayRecorder, successful_replay
 from legacy.libero.run_smolvla_episode import evidence_json
 
 

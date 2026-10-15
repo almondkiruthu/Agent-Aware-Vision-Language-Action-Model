@@ -4,8 +4,8 @@
 for #66. Construct it before processing requests from host-owned configuration:
 
 ```python
-from correction_validation import CorrectionValidator
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.interventions.correction_validation import CorrectionValidator
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
 
 # registry and adapter_capabilities are trusted host/adapter declarations.
 # These illustrative numerical bounds are synthetic, not robot calibration.

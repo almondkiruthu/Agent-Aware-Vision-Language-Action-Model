@@ -7,10 +7,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from baseline_fallback import BaselineFallback
-from episode_harness import ActionResolution, EpisodeConfig, RobotStateCapture, ViewCapture, run_episode
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.baseline_fallback import BaselineFallback
+from agent_vla.observations.contracts import RobotStateCapture, ViewCapture
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 import test_reopen_retreat as recoveries
 import test_single_action_adjustment as adjustments
 from test_supervisor_vlm import raw

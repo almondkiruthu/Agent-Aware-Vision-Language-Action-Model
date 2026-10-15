@@ -5,10 +5,14 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from end_effector_progress import EndEffectorProgressTrigger, ProgressSettings
-from episode_harness import ActionProposal, EpisodeConfig, ObservationPacket, SupervisorPass, run_episode, supervisor_observation
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.end_effector_progress import (
+    EndEffectorProgressTrigger,
+    ProgressSettings,
+)
+from agent_vla.observations.contracts import ObservationPacket, supervisor_observation
+from agent_vla.runtime.harness import ActionProposal, EpisodeConfig, SupervisorPass, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 def observation(position, frame='world', units='m'):

@@ -7,11 +7,12 @@ from hashlib import sha256
 import json
 import unittest
 
-from decision_memory import DecisionMemory
-from episode_harness import EpisodeConfig, RobotStateCapture, ViewCapture, run_episode
-from memory_correction import MemoryCorrectionExecutor
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.memory.decision_memory import DecisionMemory
+from agent_vla.observations.contracts import RobotStateCapture, ViewCapture
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.memory.memory_correction import MemoryCorrectionExecutor
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 import test_memory_compatibility as memories
 import test_single_action_adjustment as adjustments
 import test_reopen_retreat as recoveries

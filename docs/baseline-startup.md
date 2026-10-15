@@ -7,7 +7,7 @@ and data-use allowance in PRD #1 and issue #55.
 
 ## Declared setup
 
-Use Linux, Python 3.10 and the repository root. The [README setup](../README.md#setup)
+Use Linux, Python 3.10 and the repository root. The [legacy setup](legacy-libero.md#setup)
 records the original Conda and FFmpeg commands. The following isolated CPU setup
 was checked on 2026-10-08 in Ubuntu under WSL; it can validate imports without a
 CUDA installation. Use a fresh virtual environment, outside the repository:
@@ -16,6 +16,7 @@ CUDA installation. Use a fresh virtual environment, outside the repository:
 python3.10 -m venv /path/to/neotix-baseline-preflight
 /path/to/neotix-baseline-preflight/bin/python -m pip install uv
 PREFLIGHT=/path/to/neotix-baseline-preflight
+"$PREFLIGHT/bin/python" -m pip install -e .
 "$PREFLIGHT/bin/uv" pip install --python "$PREFLIGHT/bin/python" \
   --index-url https://download.pytorch.org/whl/cpu \
   'torch==2.7.1' 'torchvision==0.22.1'

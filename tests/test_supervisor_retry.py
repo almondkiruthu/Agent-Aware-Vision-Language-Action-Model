@@ -8,15 +8,19 @@ from threading import Event
 import unittest
 from unittest.mock import patch
 
-from episode_harness import EpisodeConfig, run_episode
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
-from supervisor_retry import RecoverableProviderError
-from supervisor_vlm import AnthropicMessagesTransport, ChronologicalVlmAdapter, VlmSettings
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.supervision.retry import RecoverableProviderError
+from agent_vla.supervision.vlm import (
+    AnthropicMessagesTransport,
+    ChronologicalVlmAdapter,
+    VlmSettings,
+)
 from time import monotonic
-from model_usage import ModelCallJournal
+from agent_vla.runtime.model_usage import ModelCallJournal
 from test_supervisor_provider import response
 from test_supervisor_vlm import PNG, proposal, pass_message
 
@@ -25,7 +29,7 @@ class SupervisorRetryTests(unittest.TestCase):
     def test_http_error_classification_is_explicit(self):
         for status, expected in ((429, 'rate_limited'), (503, 'unavailable'), (401, None), (500, None)):
             with self.subTest(status=status), patch.dict('os.environ', {'ANTHROPIC_API_KEY': 'fixture'}), \
-                    patch('supervisor_vlm.http.client.HTTPSConnection') as connection:
+                    patch('agent_vla.supervision.vlm.http.client.HTTPSConnection') as connection:
                 connection.return_value.getresponse.return_value.status = status
                 with self.assertRaises(RuntimeError) as caught:
                     AnthropicMessagesTransport()({}, monotonic() + 1, Event())

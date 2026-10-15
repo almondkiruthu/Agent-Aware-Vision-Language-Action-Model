@@ -11,10 +11,14 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from operator import index
 from time import monotonic
-from environment_interruption import InterruptionContract
+from agent_vla.runtime.interruption import InterruptionContract
 
-from episode_harness import ObservationPacket, StepResult, frame_references_for_observation
-from robot_state_evidence import LIBERO_STATE_SPECS, state_fields_for_observation
+from agent_vla.observations.contracts import ObservationPacket, frame_references_for_observation
+from agent_vla.runtime.harness import StepResult
+from agent_vla.observations.robot_state_evidence import (
+    LIBERO_STATE_SPECS,
+    state_fields_for_observation,
+)
 
 
 @dataclass(frozen=True)
@@ -62,7 +66,7 @@ def read_native_capabilities(environment):
     Unknown wrappers/controllers fail closed instead of inheriting Panda facts.
     """
     import numpy as np
-    from action_capabilities import libero_native_capabilities
+    from agent_vla.interventions.action_capabilities import libero_native_capabilities
 
     try:
         if environment.num_envs != 1 or len(environment.envs) != 1:

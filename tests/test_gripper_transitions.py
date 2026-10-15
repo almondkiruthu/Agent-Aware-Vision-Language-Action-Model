@@ -5,11 +5,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import (ActionProposal, EpisodeConfig, ObservationPacket,
-                             RobotStateCapture, SupervisorPass, run_episode)
-from gripper_transitions import GripperTransitionTrigger
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import ObservationPacket, RobotStateCapture
+from agent_vla.runtime.harness import ActionProposal, EpisodeConfig, SupervisorPass, run_episode
+from agent_vla.observations.gripper_transitions import GripperTransitionTrigger
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 WALL = datetime(2026, 1, 1, tzinfo=timezone.utc)

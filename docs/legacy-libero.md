@@ -20,7 +20,7 @@ training or policy fine-tuning has been performed.
 - `run_smolvla_episode.py`: standalone runner for one selected LIBERO task.
 - `README.md`: environment setup, usage, output descriptions, and initial results.
 - `.gitignore`: excludes generated runs, model weights, caches, and local environments.
-- `episode_harness.py`: shared episode execution with optional supervision and memory.
+- `src/agent_vla/runtime/harness.py`: shared episode execution with optional supervision and memory.
 - `tests/`: behavioral tests using public interfaces and complete replay episodes.
 - `docs/`: implemented workflows, controller evidence, and accepted design decisions.
 - [Client interface handoff packet](client-interface-handoff.md): unsent checklist for Boniface to coordinate the client contract, timing and permissions; missing answers remain explicit.
@@ -45,6 +45,11 @@ This is a custom adaptation of LeRobot's evaluation pipeline, not an official Le
 A standalone CUDA rollout was completed on this machine. Runtime and memory requirements depend on the environment and workload. The script checks for LeRobot **0.4.3**; compatibility with later releases has not been established.
 
 ## Setup
+
+The shared harness now uses an installable package. After creating and activating
+the environment below, run `python -m pip install -e .` from the repository root
+before invoking the legacy runner or offline commands. See the
+[import migration](import-migration.md) for notebooks using former root modules.
 
 For a clean-environment import and task/state check before an authorized
 episode, follow the [baseline startup preflight](baseline-startup.md).
@@ -228,7 +233,7 @@ For an explicit pass decision, supply `supervisor_decider(proposal)` to
 the same sanitized observation boundary described above. Return a typed response:
 
 ```python
-from episode_harness import SupervisorPass
+from agent_vla.runtime.harness import SupervisorPass
 
 def pass_current(proposal):
     return SupervisorPass(
@@ -258,7 +263,7 @@ nonempty `evidence_availability` dictionary mapping assessed input names to
 `available`, `missing`, `stale`, or `unknown`. For example:
 
 ```python
-from episode_harness import SupervisorAbstention
+from agent_vla.runtime.harness import SupervisorAbstention
 
 def abstain_current(proposal):
     return SupervisorAbstention(
@@ -312,8 +317,8 @@ or measured task improvement.
 For a synthetic successful replay without a model, simulator, or files, call the same interface with the public fixture:
 
 ```python
-from episode_harness import run_episode
-from replay_adapters import successful_replay
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.adapters import successful_replay
 
 fixture = successful_replay()
 outcome = run_episode(fixture.config, fixture.policy,
@@ -330,8 +335,8 @@ New CLI episodes retain a portable `replay/` directory. Run it without LeRobot,
 NumPy, model downloads, or simulator access:
 
 ```bash
-python recorded_replay.py outputs/my_episode/replay
-python recorded_replay.py tests/fixtures/recorded_episode
+python -m agent_vla.evidence.replay outputs/my_episode/replay
+python -m agent_vla.evidence.replay tests/fixtures/recorded_episode
 ```
 
 The bundled synthetic fixture executes an override followed by a pass decision
@@ -375,10 +380,10 @@ flushes and calls `os.fsync` after its header and every action, before writing t
 full observation or invoking downstream video/log sinks. Read a stopped recording:
 
 ```powershell
-python execution_progress.py outputs/my_episode/replay/execution.jsonl
+python -m agent_vla.evidence.journal outputs/my_episode/replay/execution.jsonl
 ```
 
-The same public API is `read_execution_progress(path)` in `execution_progress.py`.
+The same public API is `read_execution_progress(path)` in `src/agent_vla/evidence/journal.py`.
 It checks record digests, ordering, chain links and acknowledgement semantics,
 retaining the valid prefix and reporting the first incomplete or invalid record
 with its line number. `valid_bytes` marks the end of that prefix; readback never
@@ -405,8 +410,8 @@ To inspect the intervention timeline locally, generate a standalone HTML report
 and open the resulting file in a browser:
 
 ```bash
-python episode_timeline.py tests/fixtures/recorded_episode timeline.html
-python episode_timeline.py outputs/my_episode/replay my_episode_timeline.html
+python -m agent_vla.evidence.timeline tests/fixtures/recorded_episode timeline.html
+python -m agent_vla.evidence.timeline outputs/my_episode/replay my_episode_timeline.html
 ```
 
 The output must be a new file. No server, JavaScript, model or simulator is needed.
@@ -499,7 +504,7 @@ name and inclusive scalar `RecoveryParameter` bounds from trusted configuration;
 the response cannot supply code, definitions, limits or extra fields. For example:
 
 ```python
-from supervisor_recovery import RecoveryParameter, RecoveryRequestDecoder
+from agent_vla.supervision.recovery import RecoveryParameter, RecoveryRequestDecoder
 
 # Synthetic interface example only; these are not calibrated robot limits.
 decoder = RecoveryRequestDecoder("reopen_and_retreat", (
@@ -531,7 +536,7 @@ named components from trusted adapter settings:
 
 ```python
 from dataclasses import asdict
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
 
 # Synthetic interface bounds only, not calibrated robot limits.
 decoder = AdjustmentRequestDecoder("left_arm", "world", (
@@ -575,7 +580,7 @@ numeric parameters reject non-finite values and booleans. Tool code, replacement
 instructions and undeclared action fields are unsupported.
 
 ```python
-from supervisor_response import SupervisorResponseDecoder
+from agent_vla.supervision.response import SupervisorResponseDecoder
 
 decoder = SupervisorResponseDecoder()  # pass/abstain only
 # In supervisor_decider(current_proposal):
@@ -603,7 +608,7 @@ Verify with
 
 ### Bounded provider requests
 
-`BoundedSupervisorProvider(provider, timeout_seconds)` in `supervisor_provider.py`
+`BoundedSupervisorProvider(provider, timeout_seconds)` in `src/agent_vla/supervision/provider.py`
 wraps a callable `provider(proposal, deadline, cancellation_event)`. The deadline
 uses `time.monotonic()`; configure the transport's own timeout from its remaining
 time and honor cancellation. Inputs are detached and supervisor-allowlisted, and
@@ -744,7 +749,7 @@ The uploaded action log contained 520 consecutive entries with seven finite acti
 
 ## Recorded supervisor responses
 
-`RecordedSupervisor(bundle)` in `supervisor_replay.py` is an offline
+`RecordedSupervisor(bundle)` in `src/agent_vla/supervision/replay.py` is an offline
 `supervisor_decider` callback. Load a JSON bundle with `json.loads`, then pass
 the adapter to `run_episode`. It has no provider connection or fallback.
 

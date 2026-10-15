@@ -7,9 +7,10 @@ import json
 from pathlib import Path
 import unittest
 
-from episode_harness import ActionProposal, EpisodeConfig, ObservationPacket, run_episode
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import ActionProposal, EpisodeConfig, run_episode
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
 
 
 class AdjustmentRequestTests(unittest.TestCase):

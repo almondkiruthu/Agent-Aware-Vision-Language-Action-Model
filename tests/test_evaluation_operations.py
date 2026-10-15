@@ -5,11 +5,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import EpisodeConfig, run_episode
-from evaluation_operations import report_operational_metrics
-from evaluation_protocol import EvaluationProtocol, ProtocolError
-from evaluation_schedule import build_evaluation_schedule
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evaluation.operations import report_operational_metrics
+from agent_vla.evaluation.protocol import EvaluationProtocol, ProtocolError
+from agent_vla.evaluation.schedule import build_evaluation_schedule
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from tests.test_evaluation_protocol import declaration
 
 

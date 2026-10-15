@@ -4,6 +4,10 @@
 
 - [Setup, fresh Colab walkthrough, and verified episode results](../ROBOTWIN_SETUP.md)
 - [Codebase map and remaining integration work](codebase-map.md)
+- [Research installation, commands, and verification](research-workflow.md)
+- [Shared package architecture](architecture.md)
+- [Old-to-new import migration](import-migration.md)
+- [Architecture refactor verification](architecture-validation.md)
 - [RoboTwin transition decision](adr/0006-use-robotwin-client-starter.md)
 - [Domain vocabulary](../CONTEXT.md)
 

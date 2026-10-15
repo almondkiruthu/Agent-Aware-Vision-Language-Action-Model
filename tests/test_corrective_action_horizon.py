@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from recorded_replay import TraceError, load_recorded_replay
+from agent_vla.evidence.replay import TraceError, load_recorded_replay
 import test_intervention_limits as fixtures
 
 

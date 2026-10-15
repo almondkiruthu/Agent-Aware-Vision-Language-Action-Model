@@ -1,6 +1,6 @@
 # Chronological VLM requests
 
-`supervisor_vlm.py` implements an Anthropic Messages API adapter. Its wire
+`src/agent_vla/supervision/vlm.py` implements an Anthropic Messages API adapter. Its wire
 format follows the provider's [Messages reference](https://platform.claude.com/docs/en/api/messages/create)
 and [vision guide](https://platform.claude.com/docs/en/build-with-claude/vision).
 The model identifier, output token limit, history bound, image encoder and
@@ -37,9 +37,9 @@ A changed model, prompt, token limit or history bound fails before transport.
 Existing manifest paths are never overwritten.
 
 ```python
-from supervisor_identity import FrozenSupervisorManifest
-from supervisor_vlm import supervisor_identity
-from attempt_identity import AttemptIdentityRecorder
+from agent_vla.supervision.identity import FrozenSupervisorManifest
+from agent_vla.supervision.vlm import supervisor_identity
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder
 
 settings = VlmSettings(model_id, max_tokens=512, max_observations=4)
 # attempt_directory must already exist and belong to this new attempt.
@@ -93,8 +93,8 @@ from io import BytesIO
 import numpy as np
 from PIL import Image
 
-from supervisor_provider import BoundedSupervisorProvider
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings
+from agent_vla.supervision.provider import BoundedSupervisorProvider
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings
 
 def encode_png(pixels):
     array = np.asarray(pixels)
@@ -138,7 +138,7 @@ are mocked and make no paid requests or uploads.
 Create a new `ModelCallJournal` beside the trace and pass it to the adapter:
 
 ```python
-from model_usage import ModelCallJournal
+from agent_vla.runtime.model_usage import ModelCallJournal
 
 # trace is a TraceRecorder with a newly created destination directory.
 journal = ModelCallJournal(trace.directory / 'model_calls.jsonl')
@@ -215,7 +215,7 @@ Wrap a synchronous supervisor (including `BoundedSupervisorProvider`) before
 passing it to `run_episode`:
 
 ```python
-from supervisor_eligibility import ObservationEligibleSupervisor
+from agent_vla.supervision.eligibility import ObservationEligibleSupervisor
 
 eligible_supervisor = ObservationEligibleSupervisor(
     provider, {"main": 0.5, "wrist": 0.5, "robot_state": 0.5})

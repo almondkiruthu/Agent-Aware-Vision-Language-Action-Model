@@ -7,11 +7,11 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from episode_harness import EpisodeConfig, SupervisorResponseError, run_episode
-from observation_window import ObservationWindowBuilder, WindowSettings
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from temporal_persistence import PersistenceSettings, TemporalPersistenceGate
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorResponseError, run_episode
+from agent_vla.observations.window import ObservationWindowBuilder, WindowSettings
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.temporal_persistence import PersistenceSettings, TemporalPersistenceGate
 from test_supervisor_vlm import proposal, raw
 
 

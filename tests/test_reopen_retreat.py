@@ -10,18 +10,18 @@ from tempfile import TemporaryDirectory
 from threading import Event, Thread
 import unittest
 
-from correction_validation import CorrectionValidator
-from episode_harness import (ActionResolution, EpisodeConfig, ExecutionBusy, ObservationRejected,
-                             RobotStateCapture, ViewCapture, run_episode)
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from policy_adapter import ResetOnResumePolicyAdapter
-from single_action_adjustment import SingleActionAdjustment
-from recovery_eligibility import ReopenRetreatEligibility
-from recovery_registry import RecoveryRegistry
-from recovery_monitor import RecoveryAssessment
-from reopen_retreat import ReopenRetreatControl, ReopenRetreatExecutor
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from translation_conversion import LiberoTranslationConverter
+from agent_vla.interventions.correction_validation import CorrectionValidator
+from agent_vla.observations.contracts import ObservationRejected, RobotStateCapture, ViewCapture
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, ExecutionBusy, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.runtime.policy_adapter import ResetOnResumePolicyAdapter
+from agent_vla.interventions.single_action_adjustment import SingleActionAdjustment
+from agent_vla.supervision.recovery_eligibility import ReopenRetreatEligibility
+from agent_vla.interventions.recovery_registry import RecoveryRegistry
+from agent_vla.interventions.recovery_monitor import RecoveryAssessment
+from agent_vla.interventions.reopen_retreat import ReopenRetreatControl, ReopenRetreatExecutor
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.interventions.translation_conversion import LiberoTranslationConverter
 from test_recovery_eligibility import fresh_proposal, request_for, scene_for
 from test_recovery_registry import fixture_tool
 from test_supervisor_vlm import raw

@@ -31,7 +31,7 @@ settings or certify a live supervisor integration.
 same JSON report:
 
 ```powershell
-python recorded_replay.py <sealed-trace-directory>
+python -m agent_vla.evidence.replay <sealed-trace-directory>
 python -m unittest discover -s tests -p test_recovery_only.py -v
 ```
 

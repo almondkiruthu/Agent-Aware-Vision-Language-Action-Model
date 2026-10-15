@@ -6,10 +6,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionResolution, EpisodeConfig, run_episode
-from execution_failure import ExecutionFailure
-from recorded_replay import TraceRecorder, TraceError, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.runtime.execution_failure import ExecutionFailure
+from agent_vla.evidence.replay import TraceRecorder, TraceError, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 class ExecutionFailureTests(unittest.TestCase):

@@ -4,17 +4,17 @@ from copy import deepcopy
 import json
 import unittest
 
-from decision_memory import DecisionMemory
+from agent_vla.memory.decision_memory import DecisionMemory
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
-from episode_harness import EpisodeConfig, run_episode
-from intervention_memory import InterventionMemory
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
-from supervisor_recovery import RecoveryParameter, RecoveryRequestDecoder
-from supervisor_response import SupervisorResponseDecoder
-from supervisor_vlm import ChronologicalVlmAdapter, SUPERVISOR_PROMPT, VlmSettings
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.memory.intervention_memory import InterventionMemory
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.supervision.recovery import RecoveryParameter, RecoveryRequestDecoder
+from agent_vla.supervision.response import SupervisorResponseDecoder
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, SUPERVISOR_PROMPT, VlmSettings
 import test_intervention_memory as fixtures
 from test_supervisor_vlm import PNG, raw, message
 

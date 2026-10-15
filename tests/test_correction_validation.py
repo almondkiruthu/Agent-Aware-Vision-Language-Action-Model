@@ -8,14 +8,14 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from correction_validation import CorrectionValidator
-from episode_harness import (ActionProposal, ActionResolution, EpisodeConfig,
-                             ObservationPacket, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from recovery_registry import RecoveryRegistry
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_adjustment import AdjustmentComponent, AdjustmentRequestDecoder
-from supervisor_recovery import RecoveryParameter, RecoveryRequestDecoder
+from agent_vla.interventions.correction_validation import CorrectionValidator
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import ActionProposal, ActionResolution, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.interventions.recovery_registry import RecoveryRegistry
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.adjustment import AdjustmentComponent, AdjustmentRequestDecoder
+from agent_vla.supervision.recovery import RecoveryParameter, RecoveryRequestDecoder
 from test_recovery_registry import fixture_tool
 
 

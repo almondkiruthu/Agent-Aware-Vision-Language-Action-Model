@@ -17,6 +17,9 @@ establish a success-rate baseline or demonstrate improvement from supervision.
   [upload bundle](robotwin/robotwin-colab-input.zip).
 - [Codebase map and integration work](docs/codebase-map.md): reusable modules,
   legacy assumptions, and the next adapter work.
+- [Research workflow](docs/research-workflow.md): install the shared package,
+  record a CPU example, replay traces, and inspect evidence.
+- [Architecture](docs/architecture.md) and [import migration](docs/import-migration.md).
 - [Documentation index](docs/README.md): current guides and historical evidence.
 
 The original client files in `robotwin/` remain unchanged. Its `supervise()` hook
@@ -29,7 +32,9 @@ because the simulator and policy require different NumPy versions.
 | Location | Purpose |
 | --- | --- |
 | `robotwin/` | Active client runner, setup scripts, notebook, pinned revisions, and verified evidence |
-| Root Python modules | Reusable episode, supervision, recording, memory, and evaluation implementation |
+| `src/agent_vla/` | Installable shared package: runtime, observations, supervision, interventions, memory, evidence, evaluation |
+| `examples/` | Runnable CPU recording and replay example |
+| `tools/` | Distribution verification outside the checkout |
 | `tests/` | Offline behavioral and replay tests, including legacy adapter regressions |
 | `legacy/libero/` | Previous SmolVLA/LIBERO runner, simulator adapters, asset lock, and controller probe |
 | `docs/` | Module guides, evaluation contracts, provenance, and architectural decisions |
@@ -44,9 +49,9 @@ simulator, download model weights, or call paid supervisor APIs:
 python -m venv .venv
 # Windows PowerShell: .venv\Scripts\Activate.ps1
 # Linux/macOS: source .venv/bin/activate
-python -m pip install -r requirements-dev.txt
+python -m pip install -e ".[dev]"
 python -m unittest discover -s tests
-python -m compileall -q robotwin/setup legacy
+python -m compileall -q src examples robotwin/setup legacy
 ```
 
 For shell syntax, use Bash (Git Bash or WSL on Windows):
@@ -60,6 +65,19 @@ bash -n robotwin/setup/run_smoke.sh
 A passing offline suite does not validate RoboTwin physics, action semantics,
 model quality, or the live supervisor. GPU execution evidence is documented
 separately in the setup guide.
+
+After installation, try the shared harness without a GPU:
+
+```bash
+python examples/record_episode.py outputs/example-trace
+agent-vla replay outputs/example-trace
+agent-vla timeline outputs/example-trace outputs/example-timeline.html
+```
+
+This example uses scripted CPU adapters; its result is not robot performance.
+The installed package and commands work outside the checkout. Existing root
+imports have moved; use the [migration table](docs/import-migration.md) to update
+research notebooks.
 
 ## Previous implementation
 

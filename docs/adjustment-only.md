@@ -34,7 +34,7 @@ existing annotation fingerprints.
 
 ```powershell
 python -m unittest discover -s tests -p test_adjustment_only.py -v
-python recorded_replay.py <sealed-trace-directory>
+python -m agent_vla.evidence.replay <sealed-trace-directory>
 ```
 
 The complete synthetic episode requests recovery, then a bounded translation
