@@ -1,0 +1,5 @@
+# Keep NumPy-2-only releases out of the simulator environment.
+numpy==1.26.4
+torch==2.8.0
+opencv-python<4.12
+zarr<3

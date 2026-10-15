@@ -1,3 +1,5 @@
+> **RoboTwin transition:** Start with [ROBOTWIN_SETUP.md](ROBOTWIN_SETUP.md). The Colab L4 setup has completed a smoke episode and two full policy attempts. The inherited LIBERO documentation below describes the previous implementation.
+
 # Agent-Aware Vision-Language-Action Model
 
 Investigating an AI supervisor that observes a frozen vision-language-action (VLA) policy, detects failures or stalled progress, and eventually intervenes with targeted corrections—without retraining the underlying policy.
@@ -54,7 +56,7 @@ Run these commands in a terminal. Conda, Git, and a working NVIDIA driver are pr
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/BeefaceData/Agent-Aware-Vision-Language-Action-Model.git
+git clone https://github.com/almondkiruthu/Agent-Aware-Vision-Language-Action-Model.git
 cd Agent-Aware-Vision-Language-Action-Model
 ```
 

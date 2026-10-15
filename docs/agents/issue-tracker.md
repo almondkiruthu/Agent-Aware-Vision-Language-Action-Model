@@ -1,7 +1,7 @@
 # Issue tracker: GitHub
 
 Issues and specs live in GitHub Issues for
-`BeefaceData/Agent-Aware-Vision-Language-Action-Model`.
+`almondkiruthu/Agent-Aware-Vision-Language-Action-Model`.
 
 Use the `gh` CLI from this clone; it infers the repository from the remote.
 
