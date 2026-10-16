@@ -2,6 +2,8 @@
 
 ## Current RoboTwin work
 
+- [Next client meeting requirements and open definitions](client-meeting-requirements.md)
+
 - [Setup, fresh Colab walkthrough, and verified episode results](../ROBOTWIN_SETUP.md)
 - [Codebase map and remaining integration work](codebase-map.md)
 - [Research installation, commands, and verification](research-workflow.md)
