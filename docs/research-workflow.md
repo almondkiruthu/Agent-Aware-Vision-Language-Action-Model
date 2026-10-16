@@ -65,8 +65,10 @@ The example demonstrates this composition with the existing replay adapters.
 For supervised execution, read the [supervisor guide](supervisor-vlm.md) and
 [observation-only workflow](observation-only.md) before adding interventions.
 
-The RoboTwin runner is not connected to these interfaces yet. Its baseline
-episodes and videos remain governed by the separate setup guide.
+The unchanged RoboTwin runner remains a baseline reference. The experimental
+RoboTwin adapter reuses budget/deadline primitives through a dedicated contract;
+see [the pilot workflow](robotwin-pilot.md). Its journal is intentionally not
+accepted by the older replay command.
 
 ## Verify a change
 

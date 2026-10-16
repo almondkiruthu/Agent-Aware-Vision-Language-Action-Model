@@ -35,3 +35,4 @@ checkpoints/
 # Local issue-publishing scratch files and generated skill junctions
 .scratch/
 .claude/skills/
+robotwin/robotwin-pilot-code.zip

@@ -71,6 +71,14 @@ avoids making simulator imports a prerequisite for CPU evidence work.
 
 ## Contributing
 
+The RoboTwin integration has a dedicated `robotwin` adapter seam because its
+three-camera, 14-joint-target contract differs from the preserved legacy harness.
+It shares intervention budgets and deadline ownership, imports the unchanged
+client's task/policy builders, and uses a separate journal format. The pinned
+optional skill recipe imports NumPy only when executed. The wheel remains
+importable without simulator, model, or NumPy dependencies. See
+[the pilot contract](robotwin-pilot.md) before interpreting its outputs.
+
 Place new behavior beside the domain responsibility it changes. Introduce an
 adapter seam for a real variation, not a hypothetical future backend. Keep
 model transports injectable; do not make imports contact providers or download

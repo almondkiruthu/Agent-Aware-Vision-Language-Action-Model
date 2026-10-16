@@ -19,3 +19,6 @@ agent-vla = "agent_vla.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["agent_vla*"]
+
+[tool.setuptools.package-data]
+"agent_vla.robotwin.vendor" = ["NOTICE.md", "OPEN_ROBOT_SKILLS_LICENSE"]

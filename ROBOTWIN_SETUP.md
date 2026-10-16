@@ -31,7 +31,9 @@ The original checkout is retained as a reference at
 Both checkouts now use `https://github.com/almondkiruthu/Agent-Aware-Vision-Language-Action-Model.git`.
 The new checkout has independent Git metadata and preserves the fork's history.
 It is on `codex/robotwin-setup`, based on `f5fc34f2b9f224136db31d93b3f78d54817063ec`.
-Setup changes are local and have not been pushed.
+The setup and architecture cleanup were pushed to this branch. The supervisor
+pilot is developed separately on the same branch; see
+`docs/robotwin-pilot.md` for its execution gates and evidence requirements.
 
 Open the new directory as the project for further work. This existing chat remains
 associated with the original directory; shell commands must explicitly use the new

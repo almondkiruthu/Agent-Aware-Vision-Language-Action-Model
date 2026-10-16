@@ -1,0 +1,19 @@
+{
+  "elapsed": 5.52,
+  "model": "gemini-3.8-flash",
+  "usage": {
+    "promptTokenCount": 9,
+    "candidatesTokenCount": 5,
+    "totalTokenCount": 159,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9
+      }
+    ],
+    "thoughtsTokenCount": 145,
+    "serviceTier": "standard"
+  },
+  "response_text": "{\"ok\":true}",
+  "probe": "text_only_transport_diagnostic_not_robot_episode"
+}

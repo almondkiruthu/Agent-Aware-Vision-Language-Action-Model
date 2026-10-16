@@ -46,6 +46,14 @@ through `legacy.libero`. The former root README is preserved as
 
 ## Next integration work
 
+The experimental three-camera adapter, Gemini supervisor, recovery recipe
+compiler, and matched-pilot runner are now implemented under
+`src/agent_vla/robotwin/` and the new `robotwin/run_*` scripts. Their live
+verification is governed by [the pilot workflow](robotwin-pilot.md). This does
+not change the original starter's pass-through hook or imply that a completed
+40-episode evaluation exists. The checklist below is enforced through the
+development gate before a pilot may run.
+
 1. Specify the starter observation/action contract, including missing cameras,
    joint ordering, limits, success handling, and chunk-resumption behavior.
 2. Add an observation-only adapter and trace recording around the unchanged
