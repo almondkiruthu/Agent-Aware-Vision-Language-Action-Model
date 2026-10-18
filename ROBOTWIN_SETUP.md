@@ -1,6 +1,7 @@
 # RoboTwin transition: start here
 
-Prepared 2026-10-15. Working root: `C:\Users\almon\Desktop\RoboTwin-Agent`.
+Prepared 2026-10-15; workspace consolidated 2026-10-18.
+Working root: `C:\Users\almon\Desktop\Agent-Aware-Vision-Language-Action-Model`, branch `main`.
 
 ## Current result
 
@@ -26,18 +27,16 @@ download is `C:\Users\almon\Downloads\robotwin-results.zip` (5,180,804 bytes).
 `sim-packages.txt` and `policy-packages.txt` under `robotwin/evidence/` record the
 installed environments; they are observations, not portable lockfiles.
 
-The original checkout is retained as a reference at
-`C:\Users\almon\Desktop\Agent-Aware-Vision-Language-Action-Model`.
-Both checkouts now use `https://github.com/almondkiruthu/Agent-Aware-Vision-Language-Action-Model.git`.
-The new checkout has independent Git metadata and preserves the fork's history.
-It is on `codex/robotwin-setup`, based on `f5fc34f2b9f224136db31d93b3f78d54817063ec`.
-The setup and architecture cleanup were pushed to this branch. The supervisor
-pilot is developed separately on the same branch; see
-`docs/robotwin-pilot.md` for its execution gates and evidence requirements.
+The RoboTwin setup, architecture refactoring, and supervisor pilot were merged
+into `main` from `codex/robotwin-integration` (previously `codex/robotwin-setup`).
+The original directory is now the single engineering workspace, with the fork
+at `https://github.com/almondkiruthu/Agent-Aware-Vision-Language-Action-Model.git`.
+Git history, local outputs, and credentials are preserved during consolidation;
+credentials and generated artifacts remain ignored. See `docs/robotwin-pilot.md`
+for execution gates and evidence requirements. The 40-episode pilot outcome
+has not yet been verified.
 
-Open the new directory as the project for further work. This existing chat remains
-associated with the original directory; shell commands must explicitly use the new
-directory until the project is switched in the app.
+Open this working root as the project for further development on `main`.
 
 ## Why Colab is the next target
 

@@ -7,7 +7,10 @@ The shared package is in `src/agent_vla/`; read `docs/architecture.md` before
 changing its interfaces. Install with `python -m pip install -e ".[dev]"`, then
 run `python -m unittest discover -s tests`. Distribution checks are documented
 in `docs/research-workflow.md`. The previous simulator is in `legacy/libero/`;
-the shared package is not yet integrated with the RoboTwin runner.
+the experimental RoboTwin integration is in `src/agent_vla/robotwin/` and
+`robotwin/run_pilot.py`. Read `docs/robotwin-pilot.md` before live evaluations.
+The canonical checkout is this directory on `main`; the temporary
+`RoboTwin-Agent` directory has been consolidated here.
 
 ### Issue tracker
 

@@ -11,6 +11,10 @@ establish a success-rate baseline or demonstrate improvement from supervision.
 
 ## Start here
 
+The engineering workspace is this repository on `main`. On the maintainer's
+machine it is `C:\Users\almon\Desktop\Agent-Aware-Vision-Language-Action-Model`.
+The temporary `RoboTwin-Agent` checkout was consolidated into this directory.
+
 - [RoboTwin setup and verified results](ROBOTWIN_SETUP.md): Colab instructions,
   resource requirements, pinned versions, videos, and evidence.
 - [Clean Colab notebook](robotwin/RoboTwin_Colab.ipynb) and
@@ -22,10 +26,14 @@ establish a success-rate baseline or demonstrate improvement from supervision.
 - [Architecture](docs/architecture.md) and [import migration](docs/import-migration.md).
 - [Documentation index](docs/README.md): current guides and historical evidence.
 
-The original client files in `robotwin/` remain unchanged. Its `supervise()` hook
-currently passes actions through; the shared supervisor and memory modules are
-not connected to this runner yet. RoboTwin uses two separate Python environments
-because the simulator and policy require different NumPy versions.
+The original client files in `robotwin/` remain unchanged. The experimental
+supervisor integration uses `run_supervised_trial.py` and `run_pilot.py` with
+`src/agent_vla/robotwin/`; the original runner's `supervise()` hook still passes
+actions through. See the [supervisor pilot protocol](docs/robotwin-pilot.md) for
+the baseline, skills, interpolation, and combined conditions and their validation
+gates. The pilot outcome remains unverified; implementation is not evidence of
+task improvement. RoboTwin uses separate simulator and policy Python environments
+because they require different NumPy versions.
 
 ## Repository layout
 
