@@ -6,9 +6,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionResolution, EpisodeConfig, RobotStateCapture, ViewCapture, run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import RobotStateCapture, ViewCapture
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from test_recovery_eligibility import request_for
 import test_reopen_retreat as recoveries
 import test_single_action_adjustment as adjustments

@@ -5,7 +5,7 @@ validates a reviewed development annotation against its sealed trace, then score
 declared detector outputs. The CLI prints the same JSON report:
 
 ```powershell
-python detector_metrics.py path/to/sealed-trace path/to/review.json path/to/outputs.json
+python -m agent_vla.evaluation.detector_metrics path/to/sealed-trace path/to/review.json path/to/outputs.json
 python -m unittest discover -s tests -p test_detector_metrics.py -v
 ```
 

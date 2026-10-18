@@ -4,10 +4,15 @@ import unittest
 from array import array
 from datetime import datetime, timedelta, timezone
 
-from episode_harness import (EpisodeConfig, ObservationPacket, RobotStateCapture,
-                             ViewCapture, check_observation_freshness,
-                             frame_references_for_observation, run_episode)
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import (
+    ObservationPacket,
+    RobotStateCapture,
+    ViewCapture,
+    check_observation_freshness,
+    frame_references_for_observation,
+)
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 START = datetime(2026, 1, 1, tzinfo=timezone.utc)

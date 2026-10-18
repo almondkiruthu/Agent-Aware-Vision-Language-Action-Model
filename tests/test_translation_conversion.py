@@ -7,8 +7,9 @@ import hashlib
 import json
 import unittest
 
-from episode_harness import ActionProposal, ObservationPacket
-from translation_conversion import LiberoTranslationConverter
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import ActionProposal
+from agent_vla.interventions.translation_conversion import LiberoTranslationConverter
 
 
 def evidence_fixture():

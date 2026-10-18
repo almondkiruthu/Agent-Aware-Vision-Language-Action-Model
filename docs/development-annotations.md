@@ -1,6 +1,6 @@
 # Review development traces offline
 
-Use `development_annotations.py` with a sealed `TraceRecorder` bundle. This
+Use `src/agent_vla/memory/development_annotations.py` with a sealed `TraceRecorder` bundle. This
 workflow needs only Python's standard library; it makes no inference calls and
 does not modify execution, model weights, policy instructions or source traces.
 Annotations are evaluator records, never supervisor input or memory entries.
@@ -18,7 +18,7 @@ Annotations are evaluator records, never supervisor input or memory entries.
 3. Create a separate draft (the destination must not already exist):
 
    ```powershell
-   python development_annotations.py template tests/fixtures/recorded_episode .agent/review-draft.json --reviewer "Your name" --provenance "Synthetic repository fixture; workflow practice only"
+   python -m agent_vla.memory.development_annotations template tests/fixtures/recorded_episode .agent/review-draft.json --reviewer "Your name" --provenance "Synthetic repository fixture; workflow practice only"
    ```
 
 4. Edit the draft JSON, adding one or more events using the schema below. Keep
@@ -30,7 +30,7 @@ Annotations are evaluator records, never supervisor input or memory entries.
 5. Validate against the same trace:
 
    ```powershell
-   python development_annotations.py validate tests/fixtures/recorded_episode .agent/review-draft.json
+   python -m agent_vla.memory.development_annotations validate tests/fixtures/recorded_episode .agent/review-draft.json
    ```
 
 For a verified programmatic round-trip, call `load_annotation(trace, path)`,
@@ -83,7 +83,7 @@ is illustrative, not a human-reviewed detector label. Verify without models,
 client demonstrations, downloads or robot access:
 
 ```powershell
-python development_annotations.py validate tests/fixtures/recorded_episode tests/fixtures/development_annotation.json
+python -m agent_vla.memory.development_annotations validate tests/fixtures/recorded_episode tests/fixtures/development_annotation.json
 python -m unittest discover -s tests -p test_development_annotations.py -v
 ```
 

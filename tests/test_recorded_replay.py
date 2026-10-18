@@ -9,9 +9,9 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionResolution, EpisodeConfig, run_episode
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 class RecordedReplayTests(unittest.TestCase):
@@ -24,7 +24,7 @@ class RecordedReplayTests(unittest.TestCase):
         self.assertEqual([step[2] for step in recorder.steps], [[0.5], [0.2]])
         self.assertEqual([step[3].action_record.proposed_action for step in recorder.steps],
                          [[0.1], [0.2]])
-        result = subprocess.run([sys.executable, str(path.parents[2] / 'recorded_replay.py'),
+        result = subprocess.run([sys.executable, '-m', 'agent_vla.evidence.replay',
                                  str(path)], capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(result.stdout)['replay_outcome']['stop_reason'], 'terminated')
 

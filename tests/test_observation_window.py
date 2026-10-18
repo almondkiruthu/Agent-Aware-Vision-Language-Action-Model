@@ -4,11 +4,15 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 import unittest
 
-from episode_harness import (ActionResolution, EpisodeConfig, ObservationPacket,
-                             frame_references_for_observation, run_episode)
-from observation_window import (ObservationWindowBuilder, SequenceInterval,
-                                WindowAction, WindowSettings)
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import ObservationPacket, frame_references_for_observation
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.observations.window import (
+    ObservationWindowBuilder,
+    SequenceInterval,
+    WindowAction,
+    WindowSettings,
+)
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 def raw(sequence, wrist=True):

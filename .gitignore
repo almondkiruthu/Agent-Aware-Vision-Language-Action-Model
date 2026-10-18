@@ -5,6 +5,9 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 .pytest_cache/
+build/
+dist/
+*.egg-info/
 # Local credentials and editor settings
 .env
 .env.*
@@ -32,3 +35,4 @@ checkpoints/
 # Local issue-publishing scratch files and generated skill junctions
 .scratch/
 .claude/skills/
+robotwin/robotwin-pilot-code.zip

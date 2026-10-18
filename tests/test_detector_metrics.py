@@ -8,8 +8,8 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from development_annotations import load_annotation
-from detector_metrics import detector_report
+from agent_vla.memory.development_annotations import load_annotation
+from agent_vla.evaluation.detector_metrics import detector_report
 
 
 TRACE = Path(__file__).parent / 'fixtures/recorded_episode'
@@ -140,12 +140,12 @@ class DetectorMetricsTests(unittest.TestCase):
             outputs = Path(tmp) / 'outputs.json'
             annotation.write_text(json.dumps(review), encoding='utf-8')
             outputs.write_text(json.dumps(evaluation), encoding='utf-8')
-            result = subprocess.run([sys.executable, 'detector_metrics.py', str(TRACE),
+            result = subprocess.run([sys.executable, '-m', 'agent_vla.evaluation.detector_metrics', str(TRACE),
                                      str(annotation), str(outputs)], check=True,
                                     capture_output=True, text=True)
             self.assertEqual(json.loads(result.stdout), detector_report(TRACE, review, evaluation))
             outputs.write_text('{"version": 1, "version": 1}', encoding='utf-8')
-            result = subprocess.run([sys.executable, 'detector_metrics.py', str(TRACE),
+            result = subprocess.run([sys.executable, '-m', 'agent_vla.evaluation.detector_metrics', str(TRACE),
                                      str(annotation), str(outputs)], capture_output=True)
             self.assertNotEqual(result.returncode, 0)
         self.assertEqual(original, {path.name: path.read_bytes() for path in TRACE.iterdir() if path.is_file()})

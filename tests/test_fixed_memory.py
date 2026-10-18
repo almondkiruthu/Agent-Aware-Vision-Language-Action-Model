@@ -4,9 +4,9 @@ from dataclasses import asdict
 import json
 import unittest
 
-from fixed_memory import FixedMemory
-from memory_snapshot import MemorySnapshot
-from recorded_replay import TraceError, load_recorded_replay
+from agent_vla.memory.fixed_memory import FixedMemory
+from agent_vla.memory.memory_snapshot import MemorySnapshot
+from agent_vla.evidence.replay import TraceError, load_recorded_replay
 import test_memory_compatibility as fixtures
 import test_decision_memory as decision_fixtures
 from test_intervention_memory import pinned

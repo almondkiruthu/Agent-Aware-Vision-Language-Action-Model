@@ -2,8 +2,8 @@
 
 import unittest
 
-from episode_harness import run_episode
-from replay_adapters import ReplayPolicy, successful_replay
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.adapters import ReplayPolicy, successful_replay
 
 
 class SuccessfulReplayTests(unittest.TestCase):

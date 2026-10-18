@@ -44,8 +44,8 @@ without timing remain readable; do not infer missing latency as zero.
 ## Feed the offline detector metrics
 
 ```powershell
-python observation_only.py path/to/sealed-trace --configuration-id frozen-config-id --provenance "Permitted development trace; recorded supervisor version and settings" > outputs.json
-python detector_metrics.py path/to/sealed-trace path/to/review.json outputs.json
+python -m agent_vla.runtime.observation_only path/to/sealed-trace --configuration-id frozen-config-id --provenance "Permitted development trace; recorded supervisor version and settings" > outputs.json
+python -m agent_vla.evaluation.detector_metrics path/to/sealed-trace path/to/review.json outputs.json
 python -m unittest discover -s tests -p test_observation_only.py -v
 ```
 

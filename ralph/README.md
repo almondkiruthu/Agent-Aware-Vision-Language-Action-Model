@@ -1,5 +1,10 @@
 # Neotix Ralph
 
+> Inactive during the RoboTwin migration. The fork has Issues disabled and the
+> inherited queue describes the previous LIBERO scope. Reconcile the tracker
+> and task contracts before another explicitly requested AFK run. See
+> [the codebase map](../docs/codebase-map.md).
+
 `afk.sh` is the pasted loop with an issue target, adapted for this repository and Codex.
 
 From PowerShell:

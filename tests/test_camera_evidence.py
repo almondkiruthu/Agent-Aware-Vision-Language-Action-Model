@@ -6,10 +6,10 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from camera_evidence import CameraEvidenceRecorder
-from episode_harness import (EpisodeConfig, ViewCapture,
-                             frame_references_for_observation, run_episode)
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.camera_evidence import CameraEvidenceRecorder
+from agent_vla.observations.contracts import ViewCapture, frame_references_for_observation
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 CAPTURE_START = datetime(2026, 1, 1, tzinfo=timezone.utc)

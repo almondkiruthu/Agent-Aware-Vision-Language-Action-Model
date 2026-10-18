@@ -3,9 +3,9 @@ import json
 import unittest
 from dataclasses import asdict
 
-from episode_harness import ActionResolution, EpisodeConfig, run_episode
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from run_smolvla_episode import evidence_json
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from legacy.libero.run_smolvla_episode import evidence_json
 
 
 class TerminationTests(unittest.TestCase):

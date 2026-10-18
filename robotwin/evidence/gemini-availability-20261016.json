@@ -1,0 +1,12 @@
+{
+  "probe": "synthetic_black_images_not_robot_episode",
+  "identity": {
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "model_version": null,
+    "prompt_sha256": "c4527e6822c78a0771b19cc5bfb98d1a299832d6a3c3389674a55943e8c26f5a",
+    "temperature": 0,
+    "max_output_tokens": 4096
+  },
+  "error": "gemini_http_503"
+}

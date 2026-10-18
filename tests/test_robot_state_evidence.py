@@ -6,12 +6,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from episode_harness import EpisodeConfig, run_episode, supervisor_observation
-from libero_adapter import LiberoEnvironmentAdapter
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from robot_state_evidence import (LIBERO_STATE_SPECS, StateSpec,
-                                  state_fields_for_observation)
+from agent_vla.observations.contracts import supervisor_observation
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.robot_state_evidence import (
+    LIBERO_STATE_SPECS,
+    StateSpec,
+    state_fields_for_observation,
+)
 
 
 START = datetime(2026, 1, 1, tzinfo=timezone.utc)

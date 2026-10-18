@@ -10,10 +10,10 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from episode_harness import ActionResolution, run_episode
-from execution_progress import read_execution_progress
-from recorded_replay import TraceRecorder, TraceError, load_recorded_replay
-from replay_adapters import successful_replay
+from agent_vla.runtime.harness import ActionResolution, run_episode
+from agent_vla.evidence.journal import read_execution_progress
+from agent_vla.evidence.replay import TraceRecorder, TraceError, load_recorded_replay
+from agent_vla.evidence.adapters import successful_replay
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,9 +23,9 @@ CRASH = '''
 import os
 from pathlib import Path
 import sys
-from episode_harness import run_episode
-from recorded_replay import TraceRecorder
-from replay_adapters import successful_replay
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.replay import TraceRecorder
+from agent_vla.evidence.adapters import successful_replay
 
 path = Path(sys.argv[1])
 mode = sys.argv[2]
@@ -65,7 +65,7 @@ class ExecutionProgressTests(unittest.TestCase):
                     self.assertIsNone(report['diagnostic'])
                 with self.assertRaises(TraceError):
                     load_recorded_replay(path)
-                cli = subprocess.run([sys.executable, 'execution_progress.py',
+                cli = subprocess.run([sys.executable, '-m', 'agent_vla.evidence.journal',
                                       str(path / 'execution.jsonl')], cwd=ROOT,
                                      capture_output=True, text=True, check=True)
                 self.assertEqual(json.loads(cli.stdout), report)
@@ -161,7 +161,7 @@ class ExecutionProgressTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             path = Path(directory) / 'replay'
             trace = TraceRecorder(path, fixture.config, fixture.recorder)
-            with patch('execution_progress.os.fsync', side_effect=sync):
+            with patch('agent_vla.evidence.journal.os.fsync', side_effect=sync):
                 with self.assertRaisesRegex(OSError, 'disk sync failed'):
                     run_episode(fixture.config, fixture.policy, fixture.environment, trace)
             self.assertEqual(len(fixture.environment.actions), 1)

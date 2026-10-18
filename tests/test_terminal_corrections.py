@@ -9,9 +9,9 @@ from tempfile import TemporaryDirectory
 from threading import Event, Thread
 import unittest
 
-from episode_harness import ActionResolution, run_episode
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayRecorder
+from agent_vla.runtime.harness import ActionResolution, run_episode
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayRecorder
 import test_intervention_limits as fixtures
 
 
@@ -172,8 +172,8 @@ class TerminalCorrectionTests(unittest.TestCase):
                 load_recorded_replay(path)
 
     def test_historical_terminal_local_assessment_remains_replayable(self):
-        from episode_harness import RecoverySequence
-        from recovery_monitor import check_recovery
+        from agent_vla.runtime.harness import RecoverySequence
+        from agent_vla.interventions.recovery_monitor import check_recovery
         config, policy, env, select, _ = self.terminal_episode([fixtures.TOOL], 'success')
         assess = self.fixture.recovery.observe
 

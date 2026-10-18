@@ -31,7 +31,7 @@ reconstruct the unrecorded environment behind the README's historical results.
 From this repository in PowerShell:
 
 ```powershell
-wsl -d Ubuntu -- /home/almon/.venvs/neotix-simulator/bin/python inspect_simulator_controller.py --output docs/evidence/controller-new.json
+wsl -d Ubuntu -- /home/almon/.venvs/neotix-simulator/bin/python -m legacy.libero.inspect_simulator_controller --output docs/evidence/controller-new.json
 ```
 
 Choose a new output filename for each capture. The probe refuses to overwrite

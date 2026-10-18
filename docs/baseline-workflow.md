@@ -1,8 +1,10 @@
 # Baseline to report: a contributor walkthrough
 
-Run commands from the repository root. A replay needs Python 3.10 and this
-checkout, but no LeRobot, model download, simulator, or network connection. A
-live baseline episode additionally needs the [declared setup](../README.md#setup),
+Run commands from the repository root after installing the shared package with
+`python -m pip install -e .` in the active environment. A replay needs Python
+3.10 or later, but no LeRobot, model download, simulator, or network connection
+after installation. A live baseline episode additionally needs the
+[declared setup](legacy-libero.md#setup),
 the [startup preflight](baseline-startup.md), and the resource and data-use
 allowance in PRD #1 and issue #55. The replay exercises the same public
 `run_episode` interface with scripted adapters; its outcome is not a LIBERO
@@ -21,7 +23,7 @@ episode reset can verify application and readback in the simulator.
 The corresponding episode command, **only after the live-run gates are met**, is:
 
 ```bash
-python run_smolvla_episode.py --suite libero_10 --task-id 0 \
+python -m legacy.libero.run_smolvla_episode --suite libero_10 --task-id 0 \
   --initial-state-id 0 --seed 0 --device cuda \
   --output-dir outputs/task0_state0_attempt1
 ```
@@ -39,8 +41,8 @@ the runner. Keep the entire directory, including the videos, together. Run the
 bundle check **before** using its result as evidence:
 
 ```bash
-python artifact_bundle.py outputs/task0_state0_attempt1 --replay
-python episode_timeline.py outputs/task0_state0_attempt1/replay task0_timeline.html
+python -m agent_vla.evidence.artifact_bundle outputs/task0_state0_attempt1 --replay
+python -m agent_vla.evidence.timeline outputs/task0_state0_attempt1/replay task0_timeline.html
 ```
 
 The first command validates the final `bundle.json` inventory, SHA-256 checksums,
@@ -67,7 +69,7 @@ preflight, policy-asset resolution, reset, recorder, or bundle seal is an
 infrastructure or evidence failure, not a policy task failure. Such an attempt
 may have only partial files and no `bundle.json`; retain them for diagnosis and
 do not count them as verified completed outcomes. If a process stopped after
-actions, `python execution_progress.py <attempt>/replay/execution.jsonl` can
+actions, `python -m agent_vla.evidence.journal <attempt>/replay/execution.jsonl` can
 report the acknowledged prefix, but cannot establish completion or authorize
 resumption.
 
@@ -77,9 +79,9 @@ The repository includes a sealed, **synthetic unsuccessful** episode. These
 commands work from a plain Python 3.10 environment and do not run a live episode:
 
 ```bash
-python recorded_replay.py tests/fixtures/recorded_episode
-python -c "from recorded_replay import load_recorded_replay; from replay_adapters import ReplayRecorder; r=load_recorded_replay('tests/fixtures/recorded_episode'); sink=ReplayRecorder(); o=r.run(sink); print(o.success, o.steps, o.stop_reason); print([(s[3].action_record.proposed_action, s[2]) for s in sink.steps])"
-python episode_timeline.py tests/fixtures/recorded_episode baseline_fixture_timeline.html
+python -m agent_vla.evidence.replay tests/fixtures/recorded_episode
+python -c "from agent_vla.evidence.replay import load_recorded_replay; from agent_vla.evidence.adapters import ReplayRecorder; r=load_recorded_replay('tests/fixtures/recorded_episode'); sink=ReplayRecorder(); o=r.run(sink); print(o.success, o.steps, o.stop_reason); print([(s[3].action_record.proposed_action, s[2]) for s in sink.steps])"
+python -m agent_vla.evidence.timeline tests/fixtures/recorded_episode baseline_fixture_timeline.html
 ```
 
 Expect `success: false`, `steps: 2`, `stop_reason: terminated`, with proposed to
@@ -88,14 +90,14 @@ decision 1 is an override, decision 2 is a pass, and observation 1 has an
 unavailable wrist view. The replay manifest's recorded configuration is
 `{"seed": 17, "max_steps": 3}`; its source episode ID differs from the fresh
 replay episode ID. This fixture has a **trace seal only**, so use
-`recorded_replay.py`, not `artifact_bundle.py`: it has no enclosing
+`src/agent_vla/evidence/replay.py`, not `src/agent_vla/evidence/artifact_bundle.py`: it has no enclosing
 `attempt.json`, videos, or final `bundle.json`.
 
 For a successful public-interface comparison, run this independent in-memory
 fixture. It has no disk artifacts or model inference:
 
 ```bash
-python -c "from episode_harness import run_episode; from replay_adapters import successful_replay; f=successful_replay(); o=run_episode(f.config,f.policy,f.environment,f.recorder); print(o.success,o.steps,o.stop_reason); print(f.environment.actions)"
+python -c "from agent_vla.runtime.harness import run_episode; from agent_vla.evidence.adapters import successful_replay; f=successful_replay(); o=run_episode(f.config,f.policy,f.environment,f.recorder); print(o.success,o.steps,o.stop_reason); print(f.environment.actions)"
 ```
 
 Expect `True`, `2`, `success`, and `[('reach', 0.25), ('place', 0.75)]`.

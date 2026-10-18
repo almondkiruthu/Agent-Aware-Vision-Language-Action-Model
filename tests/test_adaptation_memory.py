@@ -4,14 +4,14 @@ from dataclasses import asdict
 import json
 import unittest
 
-from adaptation_memory import AdaptationMemory
-from attempt_identity import AttemptIdentityRecorder
-from episode_harness import ActionResolution, EpisodeConfig, run_episode
-from fixed_memory import FixedMemory
-from memory_snapshot import MemorySnapshot
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_identity import FrozenSupervisorManifest
+from agent_vla.memory.adaptation_memory import AdaptationMemory
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.memory.fixed_memory import FixedMemory
+from agent_vla.memory.memory_snapshot import MemorySnapshot
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.identity import FrozenSupervisorManifest
 import test_memory_compatibility as fixtures
 import test_decision_memory as decision_fixtures
 from test_intervention_memory import pinned

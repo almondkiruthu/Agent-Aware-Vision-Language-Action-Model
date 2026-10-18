@@ -2,9 +2,14 @@
 
 import unittest
 
-from episode_harness import EpisodeConfig, run_episode
-from replay_adapters import (ReplayEnvironment, ReplayPolicy, ReplayRecorder,
-                             ReplayStep, successful_replay)
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.adapters import (
+    ReplayEnvironment,
+    ReplayPolicy,
+    ReplayRecorder,
+    ReplayStep,
+    successful_replay,
+)
 
 
 class ControlledClock:

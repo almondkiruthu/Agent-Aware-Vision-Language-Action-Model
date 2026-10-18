@@ -39,7 +39,7 @@ substitute.
 
 ```python
 from pathlib import Path
-from translation_conversion import LiberoTranslationConverter
+from agent_vla.interventions.translation_conversion import LiberoTranslationConverter
 
 converter = LiberoTranslationConverter(
     Path(evidence_path).read_bytes(),

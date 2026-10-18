@@ -7,13 +7,13 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from baseline_fallback import BaselineFallback
-from environment_interruption import InterruptionContract
-from episode_harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.runtime.baseline_fallback import BaselineFallback
+from agent_vla.runtime.interruption import InterruptionContract
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
 from fallback_fixtures import MeasuredReplayEnvironment
-from libero_adapter import LiberoEnvironmentAdapter
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 from test_baseline_fallback import abstain
 from test_episode_timing import ControlledClock
 

@@ -4,10 +4,10 @@ from copy import deepcopy
 from dataclasses import replace
 import unittest
 
-from development_memory import freeze_development_snapshot
-from fixed_memory import FixedMemory
-from memory_snapshot import MemorySnapshot
-from recorded_replay import TraceError
+from agent_vla.memory.development_memory import freeze_development_snapshot
+from agent_vla.memory.fixed_memory import FixedMemory
+from agent_vla.memory.memory_snapshot import MemorySnapshot
+from agent_vla.evidence.replay import TraceError
 import test_memory_compatibility as fixtures
 import test_fixed_memory as fixed_fixtures
 from test_memory_snapshot import RETRIEVAL

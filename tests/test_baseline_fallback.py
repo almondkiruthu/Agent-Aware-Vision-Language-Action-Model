@@ -8,12 +8,17 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from baseline_fallback import BaselineFallback
-from episode_harness import (ActionResolution, EpisodeConfig, SupervisorAbstention,
-                             SupervisorResponseError, run_episode)
+from agent_vla.runtime.baseline_fallback import BaselineFallback
+from agent_vla.runtime.harness import (
+    ActionResolution,
+    EpisodeConfig,
+    SupervisorAbstention,
+    SupervisorResponseError,
+    run_episode,
+)
 from fallback_fixtures import MeasuredReplayEnvironment
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
 from test_episode_timing import ControlledClock
 
 

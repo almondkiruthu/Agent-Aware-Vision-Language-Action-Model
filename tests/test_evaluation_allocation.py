@@ -2,7 +2,7 @@
 
 import unittest
 
-from evaluation_allocation import plan_trial_allocation
+from agent_vla.evaluation.allocation import plan_trial_allocation
 
 
 def pilot():

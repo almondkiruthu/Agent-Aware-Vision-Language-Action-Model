@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-vla"
+version = "0.1.0"
+description = "Frozen-policy supervision, bounded interventions, and reproducible episode evidence"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["numpy==2.4.4; python_version >= '3.11'", "numpy==2.2.6; python_version < '3.11'"]
+
+[project.scripts]
+agent-vla = "agent_vla.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["agent_vla*"]
+
+[tool.setuptools.package-data]
+"agent_vla.robotwin.vendor" = ["NOTICE.md", "OPEN_ROBOT_SKILLS_LICENSE"]

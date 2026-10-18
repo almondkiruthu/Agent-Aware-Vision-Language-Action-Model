@@ -11,13 +11,13 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from development_annotations import annotation_template
-from detector_metrics import detector_report
-from episode_harness import EpisodeConfig, SupervisorResponseError, run_episode
-from observation_only import export_diagnosis_events
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_response import SupervisorResponseDecoder
+from agent_vla.memory.development_annotations import annotation_template
+from agent_vla.evaluation.detector_metrics import detector_report
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorResponseError, run_episode
+from agent_vla.runtime.observation_only import export_diagnosis_events
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.response import SupervisorResponseDecoder
 from test_episode_timing import ControlledClock
 import test_supervisor_response as response_fixtures
 
@@ -110,7 +110,7 @@ class ObservationOnlyTests(unittest.TestCase):
             self.assertEqual(report['families']['stall']['recall'], 1)
             self.assertEqual(report['families']['stall']['precision'], .5)
             self.assertEqual(report['false_intervention_count'], 0)
-            result = subprocess.run([sys.executable, 'observation_only.py', str(directory),
+            result = subprocess.run([sys.executable, '-m', 'agent_vla.runtime.observation_only', str(directory),
                                      '--configuration-id', 'synthetic-v1', '--provenance',
                                      'Synthetic scripted diagnoses'], capture_output=True,
                                     text=True, check=True)

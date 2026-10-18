@@ -8,8 +8,8 @@ without this final manifest is not a verified final bundle.
 Verify before consuming a result or replaying an episode:
 
 ```powershell
-python artifact_bundle.py outputs/my-attempt
-python artifact_bundle.py outputs/my-attempt --replay
+python -m agent_vla.evidence.artifact_bundle outputs/my-attempt
+python -m agent_vla.evidence.artifact_bundle outputs/my-attempt --replay
 ```
 
 Python callers use `verify_artifact_bundle(directory)`. It returns a validated
@@ -29,7 +29,7 @@ observation sequence, camera availability and contiguous per-camera indices.
 Inventory paths are relative so bundles can be moved. Historical absolute paths
 inside recorder evidence are not followed. Unknown manifest versions, changed or
 missing artifacts, omitted required files and inconsistent identities fail
-verification. The existing `recorded_replay.py` interface still supports historical
+verification. The existing `src/agent_vla/evidence/replay.py` interface still supports historical
 trace-only fixtures; it does not certify the enclosing baseline artifact bundle.
 
 Checksums detect changes relative to a retained manifest, not authenticity against

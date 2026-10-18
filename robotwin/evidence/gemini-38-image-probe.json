@@ -1,0 +1,36 @@
+{
+  "probe": "synthetic_black_images_not_robot_episode",
+  "identity": {
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "model_version": null,
+    "prompt_sha256": "c4527e6822c78a0771b19cc5bfb98d1a299832d6a3c3389674a55943e8c26f5a",
+    "temperature": 0,
+    "max_output_tokens": 4096
+  },
+  "decision": {
+    "sequence": 0,
+    "kind": "pass",
+    "reason": "Initial step with no visible scene details to warrant intervention.",
+    "evidence": [
+      {
+        "camera": "head_camera",
+        "detail": "Camera view is completely dark."
+      },
+      {
+        "camera": "left_camera",
+        "detail": "Camera view is completely dark."
+      },
+      {
+        "camera": "right_camera",
+        "detail": "Camera view is completely dark."
+      }
+    ]
+  },
+  "usage": {
+    "model_version": "gemini-3.8-flash",
+    "input_tokens": 4003,
+    "output_tokens": 106,
+    "thought_tokens": 284
+  }
+}

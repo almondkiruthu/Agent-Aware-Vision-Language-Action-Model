@@ -18,7 +18,7 @@ user's no-cap instruction; USD $50 is a soft target. Credential presence does
 not establish current model access. The user personally approved the Anthropic
 supervisor plan and the simulation data scope above. Live calls still need
 current pricing, durable usage reporting, and a permitted run window.
-`supervisor_vlm.py` reads `ANTHROPIC_API_KEY` from the process environment; it
+`src/agent_vla/supervision/vlm.py` reads `ANTHROPIC_API_KEY` from the process environment; it
 does not load the ignored `.env` file itself.
 
 Boniface coordinates the resource and client permission follow-up under PRD #1;

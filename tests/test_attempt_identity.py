@@ -7,11 +7,11 @@ from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
-from attempt_identity import AttemptIdentityRecorder, reserve_attempt
-from episode_harness import run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import successful_replay
-from run_smolvla_episode import main
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder, reserve_attempt
+from agent_vla.runtime.harness import run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import successful_replay
+from legacy.libero.run_smolvla_episode import main
 
 
 class AttemptIdentityTests(unittest.TestCase):
@@ -76,7 +76,7 @@ class AttemptIdentityTests(unittest.TestCase):
         sentinel = out / 'result.json'
         sentinel.write_bytes(b'previous evidence')
         with patch('sys.argv', ['runner', '--output-dir', str(out)]), \
-                patch('run_smolvla_episode.capture_environment') as capture:
+                patch('legacy.libero.run_smolvla_episode.capture_environment') as capture:
             with self.assertRaises(FileExistsError):
                 main()
         capture.assert_not_called()

@@ -11,14 +11,17 @@ from time import monotonic
 import unittest
 from unittest.mock import patch
 
-from episode_harness import (ActionProposal, EpisodeConfig, ObservationPacket,
-                             frame_references_for_observation, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from robot_state_evidence import StateSpec, state_fields_for_observation
-from supervisor_provider import BoundedSupervisorProvider, ProviderRequestError
-from supervisor_vlm import (AnthropicMessagesTransport, ChronologicalVlmAdapter,
-                            VlmSettings)
+from agent_vla.observations.contracts import ObservationPacket, frame_references_for_observation
+from agent_vla.runtime.harness import ActionProposal, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.robot_state_evidence import StateSpec, state_fields_for_observation
+from agent_vla.supervision.provider import BoundedSupervisorProvider, ProviderRequestError
+from agent_vla.supervision.vlm import (
+    AnthropicMessagesTransport,
+    ChronologicalVlmAdapter,
+    VlmSettings,
+)
 
 
 PNG = b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=')
@@ -159,7 +162,7 @@ class VlmTests(unittest.TestCase):
 
     def test_auth_only_in_header_and_provider_http_failure(self):
         with patch.dict('os.environ', {'ANTHROPIC_API_KEY': 'SECRET'}), patch(
-                'supervisor_vlm.http.client.HTTPSConnection') as connection:
+                'agent_vla.supervision.vlm.http.client.HTTPSConnection') as connection:
             response = connection.return_value.getresponse.return_value
             response.status = 200
             response.read.return_value = json.dumps(message({'kind': 'pass'})).encode()

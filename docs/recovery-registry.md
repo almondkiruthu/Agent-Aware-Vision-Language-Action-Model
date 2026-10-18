@@ -9,8 +9,8 @@ completion/abort conditions. Empty registries disable recovery; duplicate names
 and incomplete declarations fail at construction.
 
 ```python
-from recovery_registry import RecoveryRegistry, RecoveryTool
-from supervisor_recovery import RecoveryParameter
+from agent_vla.interventions.recovery_registry import RecoveryRegistry, RecoveryTool
+from agent_vla.supervision.recovery import RecoveryParameter
 
 # Synthetic contract example only; these are not reviewed robot limits.
 tool = RecoveryTool(

@@ -7,7 +7,7 @@ and data-use allowance in PRD #1 and issue #55.
 
 ## Declared setup
 
-Use Linux, Python 3.10 and the repository root. The [README setup](../README.md#setup)
+Use Linux, Python 3.10 and the repository root. The [legacy setup](legacy-libero.md#setup)
 records the original Conda and FFmpeg commands. The following isolated CPU setup
 was checked on 2026-10-08 in Ubuntu under WSL; it can validate imports without a
 CUDA installation. Use a fresh virtual environment, outside the repository:
@@ -16,6 +16,7 @@ CUDA installation. Use a fresh virtual environment, outside the repository:
 python3.10 -m venv /path/to/neotix-baseline-preflight
 /path/to/neotix-baseline-preflight/bin/python -m pip install uv
 PREFLIGHT=/path/to/neotix-baseline-preflight
+"$PREFLIGHT/bin/python" -m pip install -e .
 "$PREFLIGHT/bin/uv" pip install --python "$PREFLIGHT/bin/python" \
   --index-url https://download.pytorch.org/whl/cpu \
   'torch==2.7.1' 'torchvision==0.22.1'
@@ -57,9 +58,9 @@ from lerobot.envs.libero import create_libero_envs
 from lerobot.envs.utils import add_envs_task, preprocess_observation
 from lerobot.utils.random_utils import set_seed
 
-from baseline_environment import capture_environment
-from libero_initial_state import select_initial_state
-from pinned_policy import POLICY_REPOSITORY, POLICY_REVISION
+from legacy.libero.baseline_environment import capture_environment
+from legacy.libero.libero_initial_state import select_initial_state
+from legacy.libero.pinned_policy import POLICY_REPOSITORY, POLICY_REVISION
 
 with TemporaryDirectory() as directory:
     runtime = capture_environment(Path(directory) / 'environment.json', 'cpu')
@@ -83,7 +84,7 @@ The matching **episode invocation**, after its resource and data-use gates are
 established, is:
 
 ```bash
-python run_smolvla_episode.py --suite libero_10 --task-id 0 \
+python -m legacy.libero.run_smolvla_episode --suite libero_10 --task-id 0 \
   --initial-state-id 0 --seed 0 --device cuda
 ```
 

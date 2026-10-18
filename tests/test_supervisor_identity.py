@@ -10,13 +10,13 @@ from time import monotonic
 import unittest
 from unittest.mock import patch
 
-from attempt_identity import AttemptIdentityRecorder
-from episode_harness import EpisodeConfig, run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_identity import FrozenSupervisorManifest
-from supervisor_provider import BoundedSupervisorProvider
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings, supervisor_identity
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.identity import FrozenSupervisorManifest
+from agent_vla.supervision.provider import BoundedSupervisorProvider
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings, supervisor_identity
 from test_supervisor_vlm import PNG, pass_message, proposal, raw
 
 
@@ -59,7 +59,7 @@ class SupervisorIdentityTests(unittest.TestCase):
                 ChronologicalVlmAdapter(settings, lambda frame: PNG,
                                         frozen_manifest=self.manifest)
         for symbol in ('SUPERVISOR_PROMPT', 'PROVIDER_API_VERSION'):
-            with patch('supervisor_vlm.' + symbol, 'changed'):
+            with patch('agent_vla.supervision.vlm.' + symbol, 'changed'):
                 with self.assertRaisesRegex(ValueError, 'selection'):
                     ChronologicalVlmAdapter(self.settings, lambda frame: PNG,
                                             frozen_manifest=self.manifest)

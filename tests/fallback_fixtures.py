@@ -2,9 +2,9 @@
 
 from dataclasses import replace
 
-from baseline_fallback import BaselineFallback
-from episode_harness import RobotStateCapture
-from replay_adapters import ReplayEnvironment
+from agent_vla.runtime.baseline_fallback import BaselineFallback
+from agent_vla.observations.contracts import RobotStateCapture
+from agent_vla.evidence.adapters import ReplayEnvironment
 
 
 def healthy_fallback():

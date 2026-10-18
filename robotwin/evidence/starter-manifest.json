@@ -1,0 +1,12 @@
+{
+  "videos/attempt_1.mp4": "5d8a4edbf567754b6dc7d9b6a6fa0c82b496fa03c30174431113ec1fcf5926c9",
+  "videos/attempt_2.mp4": "c163d55123389fd20bcdb2811db092f5c883d5de5e9f214007450a57a61ce22e",
+  "videos/attempt_3.mp4": "5e65e4c411f3425aa79cc0ba69f057dfd9f4646e92a29f8bea48331e9804ac3d",
+  "videos/attempt_1.gif": "eed99a1e98a6e01d2993e44076ecfd95d73b83263ea4462c3103d3166d4cc7e0",
+  "videos/attempt_2.gif": "dd7535b8d7b5499a56938711c1beab0f5ab101e2a20a067052db7c47e07b9c3a",
+  "videos/attempt_3.gif": "8b0b15edce30b0de7da6e81a5e696d86c386c726b2f1e3cecec181edfaeaa885",
+  "run_inference.py": "242c728f2ff8761156d3ed162b4fc706a4aa4931e15b30075e4cef5d34d4e0a1",
+  "README.md": "7f8a8c79b9c8ac6cdbd0a11e8507c2a3d77f514f18a2010c99dee214af0f8bfc",
+  "requirements-sim.txt": "e2b375fdc3b7787112f48318644624207b82b1918629d428b7656c7cf6c7a894",
+  "requirements-policy.txt": "4fd5f7cc1e091fb8f42b39f3972f4a0690b7401608a6a1dfe76788c860762533"
+}

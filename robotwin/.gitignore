@@ -1,0 +1,8 @@
+RoboTwin/
+weights/
+.venv*/
+.cache/
+__pycache__/
+outputs/
+*.log
+evidence/colab-runtime-cleanup.jpg

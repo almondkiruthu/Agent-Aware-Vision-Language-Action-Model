@@ -6,9 +6,9 @@ from tempfile import TemporaryDirectory
 from threading import Event, Thread
 import unittest
 
-from episode_harness import EpisodeConfig, SupervisorPass, run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import EpisodeConfig, SupervisorPass, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 def fixture(length=20, interval=4):

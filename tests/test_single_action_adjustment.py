@@ -9,11 +9,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import ActionProposal, EpisodeConfig, ObservationPacket, run_episode
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from single_action_adjustment import SingleActionAdjustment
-from translation_conversion import LiberoTranslationConverter
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import ActionProposal, EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.interventions.single_action_adjustment import SingleActionAdjustment
+from agent_vla.interventions.translation_conversion import LiberoTranslationConverter
 from test_translation_conversion import evidence_fixture
 
 

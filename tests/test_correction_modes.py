@@ -5,10 +5,15 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from episode_harness import (ActionResolution, EpisodeConfig, RobotStateCapture,
-                             SupervisorResponseError, ViewCapture, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import RobotStateCapture, ViewCapture
+from agent_vla.runtime.harness import (
+    ActionResolution,
+    EpisodeConfig,
+    SupervisorResponseError,
+    run_episode,
+)
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 import test_reopen_retreat as recovery_fixture
 import test_single_action_adjustment as adjustment_fixture
 import test_supervisor_response as response_fixture

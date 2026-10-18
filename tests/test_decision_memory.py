@@ -8,13 +8,13 @@ from threading import Event
 from time import monotonic
 import unittest
 
-from decision_memory import DecisionMemory, disabled_memory, validate_memory
-from episode_harness import EpisodeConfig, run_episode
-from recorded_replay import TraceRecorder, TraceError, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_provider import BoundedSupervisorProvider
-from supervisor_response import SupervisorResponseDecoder
-from supervisor_vlm import ChronologicalVlmAdapter, VlmSettings, SUPERVISOR_PROMPT
+from agent_vla.memory.decision_memory import DecisionMemory, disabled_memory, validate_memory
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from agent_vla.evidence.replay import TraceRecorder, TraceError, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.provider import BoundedSupervisorProvider
+from agent_vla.supervision.response import SupervisorResponseDecoder
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter, VlmSettings, SUPERVISOR_PROMPT
 import test_memory_compatibility as fixtures
 from test_supervisor_vlm import PNG, raw, proposal, message, pass_message
 

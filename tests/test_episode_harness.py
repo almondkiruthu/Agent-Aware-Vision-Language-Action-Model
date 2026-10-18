@@ -5,8 +5,9 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from time import monotonic
 
-from episode_harness import EpisodeConfig, ObservationPacket, StepResult, run_episode
-from run_smolvla_episode import parse_args
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import EpisodeConfig, StepResult, run_episode
+from legacy.libero.run_smolvla_episode import parse_args
 
 
 class ReplayPolicy:

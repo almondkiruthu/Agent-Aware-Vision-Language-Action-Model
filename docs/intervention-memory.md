@@ -32,7 +32,7 @@ provenance are rejected. The host is responsible for the truth and timing of
 retained context; hashing does not establish authorship or model immutability.
 
 ```python
-from intervention_memory import InterventionMemory
+from agent_vla.memory.intervention_memory import InterventionMemory
 
 memory = InterventionMemory("evidence/memory")
 reference = memory.append(
@@ -274,7 +274,7 @@ must provide permitted development references and a query callback using current
 deployable evidence:
 
 ```python
-from decision_memory import DecisionMemory
+from agent_vla.memory.decision_memory import DecisionMemory
 
 selection = DecisionMemory(memory, permitted_development_references,
     query=lambda proposal: {
@@ -352,7 +352,7 @@ retrieval policies and budgets. Model/task/control/configuration metadata and
 outcomes are already bound by each record digest and its verified source evidence.
 
 ```python
-from memory_snapshot import MemorySnapshot
+from agent_vla.memory.memory_snapshot import MemorySnapshot
 
 snapshot = MemorySnapshot.freeze(snapshot_path, memory,
     permitted_development_references,
@@ -402,7 +402,7 @@ Use `FixedMemory` as the adapter's `decision_memory` to enforce a sealed
 snapshot's membership and retrieval budgets throughout evaluation:
 
 ```python
-from fixed_memory import FixedMemory
+from agent_vla.memory.fixed_memory import FixedMemory
 
 selection = FixedMemory(snapshot_path, expected_reference=pin,
     query=lambda proposal: {
@@ -476,8 +476,8 @@ For issue #104, pass `decision_memory=NoMemory()` to the same
 `ChronologicalVlmAdapter` used for memory-enabled supervision:
 
 ```python
-from decision_memory import NoMemory
-from supervisor_vlm import ChronologicalVlmAdapter
+from agent_vla.memory.decision_memory import NoMemory
+from agent_vla.supervision.vlm import ChronologicalVlmAdapter
 
 adapter = ChronologicalVlmAdapter(settings, encode_png, transport,
                                   decision_memory=NoMemory())
@@ -508,7 +508,7 @@ declared, externally pinned starting snapshot and the same four-field query used
 by `FixedMemory`, then pass it as the adapter's `decision_memory`:
 
 ```python
-from adaptation_memory import AdaptationMemory
+from agent_vla.memory.adaptation_memory import AdaptationMemory
 
 selection = AdaptationMemory(snapshot_path, expected_reference=pin, query=query)
 # Pass decision_memory=selection to ChronologicalVlmAdapter.

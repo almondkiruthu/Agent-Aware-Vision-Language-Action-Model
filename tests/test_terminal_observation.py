@@ -4,9 +4,9 @@ import unittest
 
 import numpy as np
 
-from episode_harness import EpisodeConfig, run_episode
-from libero_adapter import LiberoEnvironmentAdapter
-from replay_adapters import ReplayRecorder
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
+from agent_vla.evidence.adapters import ReplayRecorder
 
 
 def observation(value, batched=True):

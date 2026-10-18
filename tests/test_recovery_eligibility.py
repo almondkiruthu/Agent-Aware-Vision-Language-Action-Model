@@ -6,15 +6,18 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from correction_validation import CorrectionValidator
-from episode_harness import (ActionResolution, EpisodeConfig, RobotStateCapture,
-                             run_episode)
-from observation_window import ObservationWindowBuilder
-from recorded_replay import TraceRecorder, load_recorded_replay
-from recovery_eligibility import RecoverySceneAssessment, ReopenRetreatEligibility
-from recovery_registry import RecoveryRegistry
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_recovery import RecoveryEvidenceReference
+from agent_vla.interventions.correction_validation import CorrectionValidator
+from agent_vla.observations.contracts import RobotStateCapture
+from agent_vla.runtime.harness import ActionResolution, EpisodeConfig, run_episode
+from agent_vla.observations.window import ObservationWindowBuilder
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.supervision.recovery_eligibility import (
+    RecoverySceneAssessment,
+    ReopenRetreatEligibility,
+)
+from agent_vla.interventions.recovery_registry import RecoveryRegistry
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.recovery import RecoveryEvidenceReference
 from test_recovery_registry import fixture_tool
 from test_supervisor_vlm import proposal, raw
 

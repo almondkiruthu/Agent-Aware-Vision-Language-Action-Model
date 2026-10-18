@@ -1,7 +1,14 @@
 # Neotix Ralph
 
+## Migration status
+
+The inherited queue below describes LIBERO work. Before selecting an issue,
+verify that the fork's tracker is enabled and the issue's scope explicitly
+matches the current RoboTwin migration in `docs/codebase-map.md`. If the tracker
+or issue contract is not reconciled, report `[BLOCKED]` and stop.
+
 Complete one open GitHub issue labeled `ready-for-agent` per iteration in
-`BeefaceData/Agent-Aware-Vision-Language-Action-Model`.
+`almondkiruthu/Agent-Aware-Vision-Language-Action-Model`.
 Choose the lowest-numbered eligible `[V1-...]` issue with every listed blocker
 closed. Do not skip an eligible issue because another looks easier.
 

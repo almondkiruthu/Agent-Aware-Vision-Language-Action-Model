@@ -9,14 +9,14 @@ import shutil
 from tempfile import TemporaryDirectory
 import unittest
 
-from action_capabilities import libero_native_capabilities
-from attempt_identity import AttemptIdentityRecorder
-from episode_harness import EpisodeConfig, RecoverySequence, run_episode
-from intervention_memory import InterventionMemory
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
-from supervisor_identity import FrozenSupervisorManifest
-from recovery_monitor import check_recovery
+from agent_vla.interventions.action_capabilities import libero_native_capabilities
+from agent_vla.evidence.attempt_identity import AttemptIdentityRecorder
+from agent_vla.runtime.harness import EpisodeConfig, RecoverySequence, run_episode
+from agent_vla.memory.intervention_memory import InterventionMemory
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.supervision.identity import FrozenSupervisorManifest
+from agent_vla.interventions.recovery_monitor import check_recovery
 import test_intervention_limits as fixtures
 import test_single_action_adjustment as adjustments
 

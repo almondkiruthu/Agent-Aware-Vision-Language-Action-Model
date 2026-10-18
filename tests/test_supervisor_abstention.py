@@ -9,9 +9,14 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from episode_harness import EpisodeConfig, SupervisorAbstention, SupervisorPass, run_episode
-from recorded_replay import TraceError, TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import (
+    EpisodeConfig,
+    SupervisorAbstention,
+    SupervisorPass,
+    run_episode,
+)
+from agent_vla.evidence.replay import TraceError, TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 def abstain(proposal):

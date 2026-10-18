@@ -5,7 +5,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from evaluation_protocol import EvaluationProtocol, ProtocolError
+from agent_vla.evaluation.protocol import EvaluationProtocol, ProtocolError
 
 
 def member(task, state, digest=None):

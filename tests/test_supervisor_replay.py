@@ -10,12 +10,18 @@ import unittest
 
 from fallback_fixtures import MeasuredReplayEnvironment, healthy_fallback
 
-from episode_harness import (ActionProposal, ObservationPacket, SupervisorAbstention,
-                             SupervisorPass, SupervisorResponseError, run_episode)
-from recorded_replay import TraceRecorder, load_recorded_replay
-from replay_adapters import ReplayFixture, ReplayPolicy, ReplayRecorder, ReplayStep
-from episode_harness import EpisodeConfig
-from supervisor_replay import RecordedSupervisor
+from agent_vla.observations.contracts import ObservationPacket
+from agent_vla.runtime.harness import (
+    ActionProposal,
+    SupervisorAbstention,
+    SupervisorPass,
+    SupervisorResponseError,
+    run_episode,
+)
+from agent_vla.evidence.replay import TraceRecorder, load_recorded_replay
+from agent_vla.evidence.adapters import ReplayFixture, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.runtime.harness import EpisodeConfig
+from agent_vla.supervision.replay import RecordedSupervisor
 
 
 def bundle(episode='episode', kinds=('pass', 'abstain')):

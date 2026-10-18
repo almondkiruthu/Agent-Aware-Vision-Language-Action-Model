@@ -6,11 +6,15 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from episode_harness import (EpisodeConfig, ObservationPacket, RobotStateCapture,
-                             frame_references_for_observation, run_episode,
-                             supervisor_observation)
-from libero_adapter import LiberoEnvironmentAdapter
-from replay_adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
+from agent_vla.observations.contracts import (
+    ObservationPacket,
+    RobotStateCapture,
+    frame_references_for_observation,
+    supervisor_observation,
+)
+from agent_vla.runtime.harness import EpisodeConfig, run_episode
+from legacy.libero.libero_adapter import LiberoEnvironmentAdapter
+from agent_vla.evidence.adapters import ReplayEnvironment, ReplayPolicy, ReplayRecorder, ReplayStep
 
 
 SENTINEL = 'PRIVATE_SIMULATOR_TRUTH'
