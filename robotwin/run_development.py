@@ -18,11 +18,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--reference', type=Path, help='Reuse a recorded client baseline with matching runtime')
+    parser.add_argument('--model', default='gemini-3.5-flash-lite', help='Explicit model frozen before evaluation')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     output = args.output.resolve()
-    supervisor = Supervisor(GeminiTransport(os.environ['GEMINI_API_KEY']),
-                            'gemini-3.8-flash', 'gemini-3.8-flash')
+    supervisor = Supervisor(GeminiTransport(os.environ['GEMINI_API_KEY'], args.model),
+                            args.model, args.model)
     report = {'passed': False, 'runtime': identity(), 'supervisor': supervisor.identity(), 'checks': {}}
     def save():
         (output / 'readiness.json').write_text(json.dumps(report, indent=2))

@@ -20,10 +20,14 @@ three interventions. Attempts are charged before planning, including rejected
 plans. No requests are made after the intervention allowance is exhausted.
 Policy action chunks are reset after accepted corrections.
 
-The supervisor is Gemini 3.8 Flash, with exact returned model version, prompt
+The selected supervisor is Gemini 3.5 Flash-Lite, with exact returned model version, prompt
 hash, generation settings, checkpoint hashes, and source hashes frozen in the
 plan. There is no automatic provider or model switch within a pilot. Colab reads
 `GEMINI_API_KEY` through `google.colab.userdata`; never put its value in a cell.
+Before evaluation, Gemini 3.8 Flash repeatedly returned HTTP 503, including a
+minimal text-only request. The provider reported high demand. A three-image
+probe succeeded with 3.5 Flash-Lite, so the development gate explicitly selects
+that model; this is a pre-pilot choice, not a fallback during evaluation.
 Transient HTTP 503/transport failures receive at most two retries, after 5 and
 10 seconds. Every attempt consumes the same ten-request episode allowance and
 is logged; failed requests have unknown token usage, not assumed zero cost.

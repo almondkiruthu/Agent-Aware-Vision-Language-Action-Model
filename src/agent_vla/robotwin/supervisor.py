@@ -36,7 +36,7 @@ class ProviderError(RuntimeError):
 
 
 class GeminiTransport:
-    def __init__(self, api_key, model='gemini-3.8-flash', timeout=60):
+    def __init__(self, api_key, model='gemini-3.5-flash-lite', timeout=60):
         if not api_key or not re.fullmatch(r'gemini-[a-zA-Z0-9.\-]+', model):
             raise ValueError('explicit API key and Gemini model required')
         self.api_key, self.model, self.timeout = api_key, model, timeout

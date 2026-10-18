@@ -15,7 +15,7 @@ from agent_vla.robotwin.supervisor import Supervisor, GeminiTransport, ProviderE
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--env-file', type=Path)
-    parser.add_argument('--model', default='gemini-3.8-flash')
+    parser.add_argument('--model', default='gemini-3.5-flash-lite')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     key = os.environ.get('GEMINI_API_KEY')
